@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <title>OmniTools AI - All-in-One Utility Suite</title>
+    
+    <!-- Tailwind CSS & FontAwesome -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-analytics-compat.js"></script>
+
+    <!-- Firebase Configuration & Setup Script -->
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyBYLDwekIMXAI2rKvJ4PRcNbMuLuzIEkAI",
+        authDomain: "omnitools-ai-dec18.firebaseapp.com",
+        projectId: "omnitools-ai-dec18",
+        storageBucket: "omnitools-ai-dec18.firebasestorage.app",
+        messagingSenderId: "735893860560",
+        appId: "1:735893860560:web:c6198bbr2e79a789eb2ed5",
+        measurementId: "G-1KYMNVLJFJ"
+      };
+
+      // Initialize Firebase & Analytics
+      firebase.initializeApp(firebaseConfig);
+      firebase.analytics();
+      const auth = firebase.auth();
+
+      // Google Sign-In Function
+      function loginWithGoogle() {
+        const provider = new firebase.auth.GoogleAuthProvider();
+        auth.signInWithPopup(provider)
+          .then((result) => {
+            alert("Welcome " + result.user.displayName + "!");
+          })
+          .catch((error) => {
+            console.error("Login Error:", error);
+            alert("Login Failed: " + error.message);
+          });
+      }
+
+      // Track Auth State Change
+      auth.onAuthStateChanged((user) => {
+        const authBtn = document.getElementById("login-btn");
+        if (user && authBtn) {
+          authBtn.innerText = "Logout (" + user.displayName.split(' ')[0] + ")";
+          authBtn.onclick = () => {
+            if (confirm("Kya aap Logout karna chahte hain?")) {
+              auth.signOut().then(() => location.reload());
+            }
+          };
+        }
+      });
+    </script>
+
+    <style>
+      body {
+        background-color: #0b0f19;
+        color: #f8fafc;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      .glass-card {
+        background: #111827;
+        border: 1px solid #1f2937;
+        border-radius: 1rem;
+        padding: 1.25rem;
+        margin-bottom: 1.5rem;
+      }
+      .input-box {
+        width: 100%;
+        background: #1f2937;
+        border: 1px solid #374151;
+        color: white;
+        padding: 0.5rem 0.75rem;
+        border-radius: 0.5rem;
+        margin-top: 0.25rem;
+      }
+
+      /* Google Login Button Style */
+      #login-btn {
+        background-color: #4285f4;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        font-size: 14px;
+        font-weight: bold;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+      #login-btn:hover {
+        background-color: #357ae8;
+      }
+    </style>
+</head>
+<body class="p-4 md:p-8 max-w-4xl mx-auto">
+
+    <!-- Header Section -->
+    <header class="flex justify-between items-center mb-6 border-b border-gray-800 pb-4">
+      <div class="flex items-center gap-3">
+        <div class="bg-blue-600/20 p-2 rounded-lg text-blue-500">
+          <i class="fa-solid fa-layer-group text-xl"></i>
+        </div>
+        <div>
+          <h1 class="text-xl font-bold text-blue-500">OmniTools AI</h1>
+          <p class="text-xs text-gray-400">All-in-One Utility Suite</p>
+        </div>
+      </div>
+
+      <!-- Google Login Button -->
+      <button id="login-btn" onclick="loginWithGoogle()">
+        Login with Google
+      </button>
+    </header>
+
+    <!-- Top Ad Banner -->
+    <div class="glass-card text-center border-dashed border-gray-600 py-4 mb-6">
+      <p class="text-xs text-gray-500 uppercase tracking-widest">Advertisement</p>
+      <p class="text-sm text-gray-400 font-semibold">Google AdSense Top Banner Slot</p>
+    </div>
+
+    <!-- AI Content Generator -->
+    <div class="glass-card">
+      <h2 class="text-lg font-bold text-blue-400 mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-wand-magic-sparkles"></i> AI Content Generator
+      </h2>
+      <label class="text-xs text-gray-400">Topic / Keywords</label>
+      <input type="text" class="input-box mb-3" placeholder="e.g., Best smartphones under 20000">
+      
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div>
+          <label class="text-xs text-gray-400">Type</label>
+          <select class="input-box">
+            <option>Social Media Post</option>
+            <option>Blog Post Outline</option>
+            <option>Email Template</option>
+          </select>
+        </div>
+        <div>
+          <label class="text-xs text-gray-400">Tone</label>
+          <select class="input-box">
+            <option>Casual / Engaging</option>
+            <option>Professional</option>
+            <option>Persuasive</option>
+          </select>
+        </div>
+      </div>
+      <button class="w-full bg-blue-600 hover:bg-blue-700 font-bold py-2 rounded-lg text-white transition">
+        Generate Content
+      </button>
+    </div>
+
+    <!-- EMI & Loan Calculator -->
+    <div class="glass-card">
+      <h2 class="text-lg font-bold text-green-400 mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-calculator"></i> EMI & Loan Calculator
+      </h2>
+      <div class="mb-3">
+        <label class="text-xs text-gray-400">Loan Amount (₹)</label>
+        <input type="number" class="input-box" value="500000">
+      </div>
+      <div class="grid grid-cols-2 gap-3 mb-4">
+        <div>
+          <label class="text-xs text-gray-400">Interest Rate (% p.a.)</label>
+          <input type="number" class="input-box" value="10.5" step="0.1">
+        </div>
+        <div>
+          <label class="text-xs text-gray-400">Tenure (Years)</label>
+          <input type="number" class="input-box" value="5">
+        </div>
+      </div>
+      <button class="w-full bg-green-600 hover:bg-green-700 font-bold py-2 rounded-lg text-white transition">
+        Calculate EMI
+      </button>
+    </div>
+
+    <!-- Word & Character Counter -->
+    <div class="glass-card">
+      <h2 class="text-lg font-bold text-yellow-400 mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-font"></i> Word & Character Counter
+      </h2>
+      <textarea class="input-box h-24 mb-3" placeholder="Paste or type text here..."></textarea>
+      <div class="flex justify-around text-center bg-gray-800/50 p-3 rounded-lg">
+        <div>
+          <p class="text-xs text-gray-400">Words</p>
+          <p class="text-lg font-bold text-yellow-400">0</p>
+        </div>
+        <div>
+          <p class="text-xs text-gray-400">Characters</p>
+          <p class="text-lg font-bold text-yellow-400">0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Strong Password Generator -->
+    <div class="glass-card">
+      <h2 class="text-lg font-bold text-purple-400 mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-key"></i> Strong Password Generator
+      </h2>
+      <button class="w-full bg-purple-600 hover:bg-purple-700 font-bold py-2 rounded-lg text-white transition">
+        Generate Random Password
+      </button>
+    </div>
+
+    <!-- SEO Meta Tag Generator -->
+    <div class="glass-card">
+      <h2 class="text-lg font-bold text-red-400 mb-3 flex items-center gap-2">
+        <i class="fa-solid fa-code"></i> SEO Meta Tag Generator
+      </h2>
+      <input type="text" class="input-box mb-3" placeholder="Website Title">
+      <input type="text" class="input-box mb-4" placeholder="Website Description">
+      <button class="w-full bg-red-600 hover:bg-red-700 font-bold py-2 rounded-lg text-white transition">
+        Generate Meta Tags
+      </button>
+    </div>
+
+</body>
+</html>
