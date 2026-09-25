@@ -3,27 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniTools AI - All-in-One Utility Suite</title>
+    <title>OmniTools AI - Utility & AI Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase SDKs -->
+    <!-- Firebase SDKs (Compat versions for stability) -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
 </head>
 <body class="bg-gray-900 text-white font-sans min-h-screen p-4">
 
     <!-- Header -->
-    <header class="max-w-2xl mx-auto flex justify-between items-center bg-gray-800 p-4 rounded-xl mb-6 shadow-lg border border-gray-700">
+    <header class="max-w-3xl mx-auto flex justify-between items-center bg-gray-800 p-4 rounded-xl mb-6 shadow-lg border border-gray-700">
         <h1 class="text-xl font-bold text-blue-400"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>OmniTools AI</h1>
         <button id="login-btn" onclick="loginWithGoogle()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition flex items-center gap-2">
             <i class="fa-brands fa-google"></i> Login with Google
         </button>
     </header>
 
-    <main class="max-w-2xl mx-auto space-y-6">
+    <main class="max-w-3xl mx-auto space-y-6">
 
-        <!-- EMI Calculator -->
+        <!-- 1. EMI Calculator -->
         <div class="bg-gray-800 p-5 rounded-xl shadow-lg border border-gray-700">
             <h2 class="text-lg font-bold mb-3 text-green-400"><i class="fa-solid fa-calculator mr-2"></i>EMI Calculator</h2>
             <div class="space-y-3">
@@ -35,17 +35,36 @@
             </div>
         </div>
 
-        <!-- Password Generator -->
+        <!-- 2. Password Generator -->
         <div class="bg-gray-800 p-5 rounded-xl shadow-lg border border-gray-700">
             <h2 class="text-lg font-bold mb-3 text-purple-400"><i class="fa-solid fa-key mr-2"></i>Password Generator</h2>
             <button onclick="generatePassword()" class="w-full bg-purple-600 hover:bg-purple-700 p-2.5 rounded font-bold transition">Generate Strong Password</button>
             <div id="passwordResult" class="bg-gray-700 p-3 rounded mt-3 font-mono text-center text-green-300 break-all select-all">Click button to generate</div>
         </div>
 
+        <!-- 3. Text Utility Tool -->
+        <div class="bg-gray-800 p-5 rounded-xl shadow-lg border border-gray-700">
+            <h2 class="text-lg font-bold mb-3 text-cyan-400"><i class="fa-solid fa-font mr-2"></i>Text Case Converter & Counter</h2>
+            <textarea id="textInput" placeholder="Type or paste your text here..." class="w-full p-2.5 rounded bg-gray-700 border border-gray-600 focus:outline-none text-white h-24 mb-3"></textarea>
+            <div class="flex gap-2 mb-3">
+                <button onclick="convertText('upper')" class="flex-1 bg-cyan-600 hover:bg-cyan-700 p-2 rounded font-bold transition text-sm">UPPERCASE</button>
+                <button onclick="convertText('lower')" class="flex-1 bg-cyan-600 hover:bg-cyan-700 p-2 rounded font-bold transition text-sm">lowercase</button>
+            </div>
+            <div id="textStats" class="text-gray-300 text-sm text-center">Words: 0 | Characters: 0</div>
+        </div>
+
+        <!-- 4. Free AI Prompt Assistant -->
+        <div class="bg-gray-800 p-5 rounded-xl shadow-lg border border-gray-700">
+            <h2 class="text-lg font-bold mb-3 text-pink-400"><i class="fa-solid fa-robot mr-2"></i>AI Prompt Enhancer (Free)</h2>
+            <input type="text" id="aiPrompt" placeholder="Enter basic idea (e.g. logo design for coffee shop)" class="w-full p-2.5 rounded bg-gray-700 border border-gray-600 focus:outline-none text-white mb-3">
+            <button onclick="enhancePrompt()" class="w-full bg-pink-600 hover:bg-pink-700 p-2.5 rounded font-bold transition">Enhance Prompt with AI Logic</button>
+            <div id="aiResult" class="bg-gray-700 p-3 rounded mt-3 text-sm text-pink-200 min-h-[50px] break-words">Your enhanced prompt will appear here...</div>
+        </div>
+
     </main>
 
     <script>
-        // Firebase Config
+        // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBYLDwekIWXAIzrXu4PRcRwNwIuIzEKAI",
             authDomain: "omnitools-ai-dec18.firebaseapp.com",
@@ -55,18 +74,18 @@
             appId: "1:735093006560:web:c619bbr2e7fa789eb2ed5"
         };
 
-        // Safe Firebase Init
+        // Initialize Firebase safely
         try {
             if (!firebase.apps.length) {
                 firebase.initializeApp(firebaseConfig);
             }
         } catch(e) {
-            console.error("Firebase init failed:", e);
+            console.error("Firebase initialization failed:", e);
         }
 
         const auth = firebase.auth();
 
-        // Google Login
+        // Google Login Function
         function loginWithGoogle() {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider)
@@ -78,7 +97,7 @@
                 });
         }
 
-        // Track Login State
+        // Track Auth State Changes
         auth.onAuthStateChanged((user) => {
             const authBtn = document.getElementById('login-btn');
             if (user && authBtn) {
@@ -89,7 +108,7 @@
             }
         });
 
-        // EMI Function
+        // Tool 1: EMI Calculator
         function calculateEMI() {
             const p = parseFloat(document.getElementById('loanAmount').value);
             const r = parseFloat(document.getElementById('interestRate').value) / 12 / 100;
@@ -99,11 +118,11 @@
                 const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
                 document.getElementById('emiResult').innerText = "Monthly EMI: ₹" + emi.toFixed(2);
             } else {
-                document.getElementById('emiResult').innerText = "Please fill all fields correctly.";
+                document.getElementById('emiResult').innerText = "Please enter valid numbers.";
             }
         }
 
-        // Password Generator Function
+        // Tool 2: Password Generator
         function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
             let pwd = "";
@@ -111,6 +130,33 @@
                 pwd += chars.charAt(Math.floor(Math.random() * chars.length));
             }
             document.getElementById('passwordResult').innerText = pwd;
+        }
+
+        // Tool 3: Text Converter & Counter
+        const textInput = document.getElementById('textInput');
+        textInput.addEventListener('input', () => {
+            const text = textInput.value;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            document.getElementById('textStats').innerText = `Words: ${words} | Characters: ${text.length}`;
+        });
+
+        function convertText(mode) {
+            if (mode === 'upper') {
+                textInput.value = textInput.value.toUpperCase();
+            } else if (mode === 'lower') {
+                textInput.value = textInput.value.toLowerCase();
+            }
+        }
+
+        // Tool 4: AI Prompt Enhancer (Offline Smart Logic)
+        function enhancePrompt() {
+            const input = document.getElementById('aiPrompt').value.trim();
+            if (!input) {
+                document.getElementById('aiResult').innerText = "Please enter a short prompt idea first!";
+                return;
+            }
+            const enhanced = `High quality, highly detailed, professional rendering of "${input}", 8k resolution, cinematic lighting, masterpiece photography style, photorealistic, vibrant color palette.`;
+            document.getElementById('aiResult').innerText = enhanced;
         }
     </script>
 </body>
