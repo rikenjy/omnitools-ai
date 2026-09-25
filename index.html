@@ -3,66 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniTools AI - Utility & AI Suite</title>
+    <title>OmniTools AI - All-In-One Utility Suite</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
-    <!-- Firebase SDKs (Compat versions for stability) -->
+    <!-- Firebase SDKs -->
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
+
+    <style>
+        body {
+            background-color: #0b0f19;
+            color: #ffffff;
+            font-family: system-ui, -apple-system, sans-serif;
+        }
+        .tool-card {
+            background: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        .input-box {
+            width: 100%;
+            background: #1f2937;
+            border: 1px solid #374151;
+            color: white;
+            padding: 0.6rem 0.75rem;
+            border-radius: 0.5rem;
+            outline: none;
+        }
+        .input-box:focus {
+            border-color: #3b82f6;
+        }
+    </style>
 </head>
-<body class="bg-gray-900 text-white font-sans min-h-screen p-4">
+<body class="p-4 max-w-xl mx-auto">
 
     <!-- Header -->
-    <header class="max-w-3xl mx-auto flex justify-between items-center bg-gray-800 p-4 rounded-xl mb-6 shadow-lg border border-gray-700">
-        <h1 class="text-xl font-bold text-blue-400"><i class="fa-solid fa-wand-magic-sparkles mr-2"></i>OmniTools AI</h1>
-        <button id="login-btn" onclick="loginWithGoogle()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-semibold transition flex items-center gap-2">
-            <i class="fa-brands fa-google"></i> Login with Google
+    <header class="flex justify-between items-center mb-4">
+        <div class="flex items-center gap-2">
+            <i class="fa-solid fa-cube text-blue-500 text-2xl"></i>
+            <div>
+                <h1 class="text-xl font-bold leading-tight">OmniTools AI</h1>
+                <p class="text-xs text-gray-400">All-In-One Utility Suite</p>
+            </div>
+        </div>
+        <button id="login-btn" onclick="loginWithGoogle()" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-3.5 py-2 rounded-lg font-semibold flex items-center gap-2">
+            Login with Google
         </button>
     </header>
 
-    <main class="max-w-3xl mx-auto space-y-6">
+    <!-- Google AdSense Banner Slot -->
+    <div class="tool-card text-center py-4 border-dashed border-gray-600">
+        <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Advertisement</p>
+        <p class="text-sm font-medium text-gray-300">Google AdSense Top Banner Slot</p>
+    </div>
 
-        <!-- 1. EMI Calculator -->
-        <div class="bg-gray-800 p-5 rounded-xl shadow-lg border border-gray-700">
-            <h2 class="text-lg font-bold mb-3 text-green-400"><i class="fa-solid fa-calculator mr-2"></i>EMI Calculator</h2>
-            <div class="space-y-3">
-                <input type="number" id="loanAmount" placeholder="Loan Amount (₹)" value="100000" class="w-full p-2.5 rounded bg-gray-700 border border-gray-600 focus:outline-none text-white">
-                <input type="number" id="interestRate" placeholder="Interest Rate (% p.a.)" value="10.5" class="w-full p-2.5 rounded bg-gray-700 border border-gray-600 focus:outline-none text-white">
-                <input type="number" id="loanTenure" placeholder="Tenure (Years)" value="2" class="w-full p-2.5 rounded bg-gray-700 border border-gray-600 focus:outline-none text-white">
-                <button onclick="calculateEMI()" class="w-full bg-green-600 hover:bg-green-700 p-2.5 rounded font-bold transition">Calculate EMI</button>
-                <div id="emiResult" class="text-yellow-400 font-semibold text-center mt-2"></div>
+    <!-- 1. AI Content Generator -->
+    <div class="tool-card">
+        <div class="flex items-center gap-2 text-blue-400 font-bold mb-3 text-lg">
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            <h2>AI Content Generator</h2>
+        </div>
+        <div class="space-y-3">
+            <div>
+                <label class="text-xs text-gray-400 block mb-1">Topic / Keywords</label>
+                <input type="text" id="aiTopic" placeholder="e.g., Best smartphones under 20000" class="input-box">
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Type</label>
+                    <select id="aiType" class="input-box">
+                        <option>Social Media</option>
+                        <option>Blog Post</option>
+                        <option>Email Draft</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Tone</label>
+                    <select id="aiTone" class="input-box">
+                        <option>Casual / Eng...</option>
+                        <option>Professional</option>
+                        <option>Friendly</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="generateContent()" class="w-full bg-blue-600 hover:bg-blue-700 py-2.5 rounded-lg font-semibold text-white transition">Generate Content</button>
+            <div id="aiOutput" class="bg-gray-800 p-3 rounded-lg text-sm text-gray-200 mt-2 hidden whitespace-pre-line border border-gray-700"></div>
+        </div>
+    </div>
+
+    <!-- 2. AI Prompt Generator -->
+    <div class="tool-card">
+        <div class="flex items-center gap-2 text-purple-400 font-bold mb-3 text-lg">
+            <i class="fa-solid fa-lightbulb"></i>
+            <h2>AI Prompt Generator</h2>
+        </div>
+        <div class="space-y-3">
+            <div>
+                <label class="text-xs text-gray-400 block mb-1">Simple Concept / Idea</label>
+                <input type="text" id="promptIdea" placeholder="e.g. Futuristic city with flying cars" class="input-box">
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Style</label>
+                    <select id="promptStyle" class="input-box">
+                        <option>Photorealistic</option>
+                        <option>Cyberpunk</option>
+                        <option>Anime / Art</option>
+                        <option>3D Render</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Target AI</label>
+                    <select id="promptTarget" class="input-box">
+                        <option>Midjourney / DALL-E</option>
+                        <option>ChatGPT / Gemini</option>
+                    </select>
+                </div>
+            </div>
+            <button onclick="generatePrompt()" class="w-full bg-purple-600 hover:bg-purple-700 py-2.5 rounded-lg font-semibold text-white transition">Generate Enhanced Prompt</button>
+            <div id="promptOutput" class="bg-gray-800 p-3 rounded-lg text-sm text-purple-200 mt-2 hidden border border-gray-700 break-words select-all"></div>
+        </div>
+    </div>
+
+    <!-- 3. EMI & Loan Calculator -->
+    <div class="tool-card">
+        <div class="flex items-center gap-2 text-green-400 font-bold mb-3 text-lg">
+            <i class="fa-solid fa-calculator"></i>
+            <h2>EMI & Loan Calculator</h2>
+        </div>
+        <div class="space-y-3">
+            <div>
+                <label class="text-xs text-gray-400 block mb-1">Loan Amount (₹)</label>
+                <input type="number" id="loanAmount" value="500000" class="input-box">
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Interest Rate (% p.a.)</label>
+                    <input type="number" id="interestRate" value="10.5" class="input-box">
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 block mb-1">Tenure (Years)</label>
+                    <input type="number" id="loanTenure" value="5" class="input-box">
+                </div>
+            </div>
+            <button onclick="calculateEMI()" class="w-full bg-green-600 hover:bg-green-700 py-2.5 rounded-lg font-semibold text-white transition">Calculate EMI</button>
+            <div id="emiResult" class="text-green-400 font-bold text-center mt-2"></div>
+        </div>
+    </div>
+
+    <!-- 4. Word & Character Counter -->
+    <div class="tool-card">
+        <div class="flex items-center gap-2 text-yellow-400 font-bold mb-3 text-lg">
+            <i class="fa-solid fa-font"></i>
+            <h2>Word & Character Counter</h2>
+        </div>
+        <textarea id="textInput" placeholder="Paste or type text here..." class="input-box h-24 mb-3"></textarea>
+        <div class="grid grid-cols-2 gap-3 text-center">
+            <div class="bg-gray-800 p-2.5 rounded-lg border border-gray-700">
+                <span class="text-xs text-gray-400 block">Words</span>
+                <span id="wordCount" class="text-lg font-bold text-yellow-400">0</span>
+            </div>
+            <div class="bg-gray-800 p-2.5 rounded-lg border border-gray-700">
+                <span class="text-xs text-gray-400 block">Characters</span>
+                <span id="charCount" class="text-lg font-bold text-yellow-400">0</span>
             </div>
         </div>
+    </div>
 
-        <!-- 2. Password Generator -->
-        <div class="bg-gray-800 p-5 rounded-xl shadow-lg border border-gray-700">
-            <h2 class="text-lg font-bold mb-3 text-purple-400"><i class="fa-solid fa-key mr-2"></i>Password Generator</h2>
-            <button onclick="generatePassword()" class="w-full bg-purple-600 hover:bg-purple-700 p-2.5 rounded font-bold transition">Generate Strong Password</button>
-            <div id="passwordResult" class="bg-gray-700 p-3 rounded mt-3 font-mono text-center text-green-300 break-all select-all">Click button to generate</div>
+    <!-- 5. Strong Password Generator -->
+    <div class="tool-card">
+        <div class="flex items-center gap-2 text-pink-400 font-bold mb-3 text-lg">
+            <i class="fa-solid fa-key"></i>
+            <h2>Strong Password Generator</h2>
         </div>
+        <button onclick="generatePassword()" class="w-full bg-pink-600 hover:bg-pink-700 py-2.5 rounded-lg font-semibold text-white transition">Generate Random Password</button>
+        <div id="passwordResult" class="bg-gray-800 p-3 rounded-lg text-center font-mono text-green-400 mt-3 border border-gray-700 break-all select-all">Click button to generate</div>
+    </div>
 
-        <!-- 3. Text Utility Tool -->
-        <div class="bg-gray-800 p-5 rounded-xl shadow-lg border border-gray-700">
-            <h2 class="text-lg font-bold mb-3 text-cyan-400"><i class="fa-solid fa-font mr-2"></i>Text Case Converter & Counter</h2>
-            <textarea id="textInput" placeholder="Type or paste your text here..." class="w-full p-2.5 rounded bg-gray-700 border border-gray-600 focus:outline-none text-white h-24 mb-3"></textarea>
-            <div class="flex gap-2 mb-3">
-                <button onclick="convertText('upper')" class="flex-1 bg-cyan-600 hover:bg-cyan-700 p-2 rounded font-bold transition text-sm">UPPERCASE</button>
-                <button onclick="convertText('lower')" class="flex-1 bg-cyan-600 hover:bg-cyan-700 p-2 rounded font-bold transition text-sm">lowercase</button>
-            </div>
-            <div id="textStats" class="text-gray-300 text-sm text-center">Words: 0 | Characters: 0</div>
+    <!-- 6. SEO Meta Tag Generator -->
+    <div class="tool-card">
+        <div class="flex items-center gap-2 text-red-400 font-bold mb-3 text-lg">
+            <i class="fa-solid fa-code"></i>
+            <h2>SEO Meta Tag Generator</h2>
         </div>
-
-        <!-- 4. Free AI Prompt Assistant -->
-        <div class="bg-gray-800 p-5 rounded-xl shadow-lg border border-gray-700">
-            <h2 class="text-lg font-bold mb-3 text-pink-400"><i class="fa-solid fa-robot mr-2"></i>AI Prompt Enhancer (Free)</h2>
-            <input type="text" id="aiPrompt" placeholder="Enter basic idea (e.g. logo design for coffee shop)" class="w-full p-2.5 rounded bg-gray-700 border border-gray-600 focus:outline-none text-white mb-3">
-            <button onclick="enhancePrompt()" class="w-full bg-pink-600 hover:bg-pink-700 p-2.5 rounded font-bold transition">Enhance Prompt with AI Logic</button>
-            <div id="aiResult" class="bg-gray-700 p-3 rounded mt-3 text-sm text-pink-200 min-h-[50px] break-words">Your enhanced prompt will appear here...</div>
+        <div class="space-y-3">
+            <input type="text" id="metaTitle" placeholder="Website Title" class="input-box">
+            <textarea id="metaDesc" placeholder="Website Description" class="input-box h-20"></textarea>
+            <button onclick="generateMetaTags()" class="w-full bg-red-600 hover:bg-red-700 py-2.5 rounded-lg font-semibold text-white transition">Generate Meta Tags</button>
+            <div id="metaOutput" class="bg-gray-800 p-3 rounded-lg text-xs font-mono text-gray-300 mt-2 hidden whitespace-pre-wrap border border-gray-700 select-all"></div>
         </div>
+    </div>
 
-    </main>
-
+    <!-- Scripts -->
     <script>
         // Firebase Configuration
         const firebaseConfig = {
@@ -74,41 +209,54 @@
             appId: "1:735093006560:web:c619bbr2e7fa789eb2ed5"
         };
 
-        // Initialize Firebase safely
         try {
-            if (!firebase.apps.length) {
-                firebase.initializeApp(firebaseConfig);
-            }
-        } catch(e) {
-            console.error("Firebase initialization failed:", e);
-        }
+            if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        } catch(e) { console.error(e); }
 
         const auth = firebase.auth();
 
-        // Google Login Function
         function loginWithGoogle() {
             const provider = new firebase.auth.GoogleAuthProvider();
             auth.signInWithPopup(provider)
-                .then((result) => {
-                    alert("Welcome " + result.user.displayName + "!");
-                })
-                .catch((error) => {
-                    alert("Login failed: " + error.message);
-                });
+                .then(r => alert("Logged in as " + r.user.displayName))
+                .catch(e => alert("Login failed: " + e.message));
         }
 
-        // Track Auth State Changes
-        auth.onAuthStateChanged((user) => {
-            const authBtn = document.getElementById('login-btn');
-            if (user && authBtn) {
-                authBtn.innerText = "Logout (" + user.displayName.split(' ')[0] + ")";
-                authBtn.onclick = function() {
-                    auth.signOut().then(() => location.reload());
-                };
+        auth.onAuthStateChanged(user => {
+            const btn = document.getElementById('login-btn');
+            if (user && btn) {
+                btn.innerText = "Logout (" + user.displayName.split(' ')[0] + ")";
+                btn.onclick = () => auth.signOut().then(() => location.reload());
             }
         });
 
-        // Tool 1: EMI Calculator
+        // 1. AI Content Generator
+        function generateContent() {
+            const topic = document.getElementById('aiTopic').value.trim();
+            const type = document.getElementById('aiType').value;
+            const tone = document.getElementById('aiTone').value;
+            const output = document.getElementById('aiOutput');
+
+            if (!topic) { alert("Please enter a topic!"); return; }
+
+            output.classList.remove('hidden');
+            output.innerText = `Generating ${type} in ${tone} tone...\n\n📌 Topic: ${topic}\n\n• Key Point 1: Exploring best options for ${topic}.\n• Key Point 2: High efficiency and practical performance.\n• Key Point 3: Final verdict and recommendations.`;
+        }
+
+        // 2. AI Prompt Generator
+        function generatePrompt() {
+            const idea = document.getElementById('promptIdea').value.trim();
+            const style = document.getElementById('promptStyle').value;
+            const target = document.getElementById('promptTarget').value;
+            const output = document.getElementById('promptOutput');
+
+            if (!idea) { alert("Please enter an idea!"); return; }
+
+            output.classList.remove('hidden');
+            output.innerText = `[${target} Prompt]: Detailed ${style} of ${idea}, 8k resolution, highly realistic, cinematic lighting, masterpiece photography, octane render --ar 16:9 --v 5`;
+        }
+
+        // 3. EMI Calculator
         function calculateEMI() {
             const p = parseFloat(document.getElementById('loanAmount').value);
             const r = parseFloat(document.getElementById('interestRate').value) / 12 / 100;
@@ -117,46 +265,33 @@
             if (p > 0 && r > 0 && n > 0) {
                 const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
                 document.getElementById('emiResult').innerText = "Monthly EMI: ₹" + emi.toFixed(2);
-            } else {
-                document.getElementById('emiResult').innerText = "Please enter valid numbers.";
             }
         }
 
-        // Tool 2: Password Generator
+        // 4. Word Counter
+        document.getElementById('textInput').addEventListener('input', (e) => {
+            const text = e.target.value;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            document.getElementById('wordCount').innerText = words;
+            document.getElementById('charCount').innerText = text.length;
+        });
+
+        // 5. Password Generator
         function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
             let pwd = "";
-            for (let i = 0; i < 14; i++) {
-                pwd += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
+            for (let i = 0; i < 14; i++) pwd += chars.charAt(Math.floor(Math.random() * chars.length));
             document.getElementById('passwordResult').innerText = pwd;
         }
 
-        // Tool 3: Text Converter & Counter
-        const textInput = document.getElementById('textInput');
-        textInput.addEventListener('input', () => {
-            const text = textInput.value;
-            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-            document.getElementById('textStats').innerText = `Words: ${words} | Characters: ${text.length}`;
-        });
+        // 6. Meta Tag Generator
+        function generateMetaTags() {
+            const title = document.getElementById('metaTitle').value;
+            const desc = document.getElementById('metaDesc').value;
+            const output = document.getElementById('metaOutput');
 
-        function convertText(mode) {
-            if (mode === 'upper') {
-                textInput.value = textInput.value.toUpperCase();
-            } else if (mode === 'lower') {
-                textInput.value = textInput.value.toLowerCase();
-            }
-        }
-
-        // Tool 4: AI Prompt Enhancer (Offline Smart Logic)
-        function enhancePrompt() {
-            const input = document.getElementById('aiPrompt').value.trim();
-            if (!input) {
-                document.getElementById('aiResult').innerText = "Please enter a short prompt idea first!";
-                return;
-            }
-            const enhanced = `High quality, highly detailed, professional rendering of "${input}", 8k resolution, cinematic lighting, masterpiece photography style, photorealistic, vibrant color palette.`;
-            document.getElementById('aiResult').innerText = enhanced;
+            output.classList.remove('hidden');
+            output.innerText = `<title>${title}</title>\n<meta name="description" content="${desc}">\n<meta name="robots" content="index, follow">`;
         }
     </script>
 </body>
