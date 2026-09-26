@@ -76,7 +76,7 @@
     <div class="tool-card">
         <div class="flex items-center gap-2 text-blue-400 font-bold mb-3 text-lg">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <h2>AI Content Generator (Gemini AI Powered)</h2>
+            <h2>AI Content Generator</h2>
         </div>
         <div class="space-y-3">
             <div>
@@ -102,7 +102,7 @@
                 </div>
             </div>
             <button id="aiBtn" onclick="generateRealAIContent()" class="w-full bg-blue-600 hover:bg-blue-700 py-2.5 rounded-lg font-semibold text-white transition flex justify-center items-center gap-2">
-                <span>Generate Content with Gemini AI</span>
+                <span>Generate Content</span>
             </button>
             <div id="aiOutput" class="bg-gray-800 p-3 rounded-lg text-sm text-gray-200 mt-2 hidden whitespace-pre-line border border-gray-700 select-all"></div>
         </div>
@@ -213,6 +213,8 @@
 
     <!-- Scripts -->
     <script>
+        const GEMINI_API_KEY = "AQ.Ab8RN6KUZzjHw8cpwLHRYZVb2YqpgqSBmxS9ZxQ-AowC_v8Z8Q";
+
         // Firebase Configuration
         const firebaseConfig = {
             apiKey: "AIzaSyBYLDwekIWXAIzrXu4PRcRwNwIuIzEKAI",
@@ -244,7 +246,6 @@
             }
         });
 
-        // REAL GEMINI AI INTEGRATION
         async function generateRealAIContent() {
             const topic = document.getElementById('aiTopic').value.trim();
             const type = document.getElementById('aiType').value;
@@ -255,13 +256,13 @@
             if (!topic) { alert("Please enter a topic first!"); return; }
 
             output.classList.remove('hidden');
-            output.innerText = "⚡ Thinking... Generating real AI content for you...";
+            output.innerText = "⚡ Generating content...";
             btn.disabled = true;
 
-            const systemPrompt = `Write a detailed ${type} in a ${tone} tone about "${topic}". Give line-by-line clear points and key takeaways.`;
+            const systemPrompt = `Write a detailed, engaging, and high-quality ${type} in a ${tone} tone about "${topic}". Include key bullet points, concise explanation, and actionable value.`;
 
             try {
-                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${firebaseConfig.apiKey}`, {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
@@ -270,19 +271,20 @@
                 });
 
                 const data = await response.json();
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts[0].text) {
                     output.innerText = data.candidates[0].content.parts[0].text;
+                } else if (data.error) {
+                    output.innerText = `⚠️ API Response Error: ${data.error.message}`;
                 } else {
-                    output.innerText = `📌 TOPIC OVERVIEW: ${topic.toUpperCase()}\n\n1. Overview:\n• Exploring key aspects of ${topic}.\n• High efficiency and practical performance.\n\n2. Key Highlights:\n• Step 1: Research and initial planning.\n• Step 2: Implementation and testing.\n• Step 3: Final optimization.`;
+                    output.innerText = `📌 TOPIC OVERVIEW: ${topic.toUpperCase()}\n\n1. Overview:\n• Detailed insights on ${topic}.\n• Optimized for quick reading and practical use.`;
                 }
             } catch (err) {
-                output.innerText = `📌 TOPIC OVERVIEW: ${topic.toUpperCase()}\n\n1. Overview:\n• Exploring key aspects of ${topic}.\n• High efficiency and practical performance.\n\n2. Key Highlights:\n• Step 1: Research and initial planning.\n• Step 2: Implementation and testing.\n• Step 3: Final optimization.`;
+                output.innerText = "⚠️ Could not reach AI server. Please check your network connection.";
             } finally {
                 btn.disabled = false;
             }
         }
 
-        // 2. AI Prompt Generator
         function generatePrompt() {
             const idea = document.getElementById('promptIdea').value.trim();
             const style = document.getElementById('promptStyle').value;
@@ -295,7 +297,6 @@
             output.innerText = `[${target} Prompt]: Detailed ${style} of ${idea}, 8k resolution, highly realistic, cinematic lighting, masterpiece photography, octane render --ar 16:9 --v 5`;
         }
 
-        // 3. EMI Calculator
         function calculateEMI() {
             const p = parseFloat(document.getElementById('loanAmount').value);
             const r = parseFloat(document.getElementById('interestRate').value) / 12 / 100;
@@ -307,7 +308,6 @@
             }
         }
 
-        // 4. Word Counter
         document.getElementById('textInput').addEventListener('input', (e) => {
             const text = e.target.value;
             const words = text.trim() ? text.trim().split(/\s+/).length : 0;
@@ -315,7 +315,6 @@
             document.getElementById('charCount').innerText = text.length;
         });
 
-        // 5. Password Generator
         function generatePassword() {
             const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
             let pwd = "";
@@ -323,7 +322,6 @@
             document.getElementById('passwordResult').innerText = pwd;
         }
 
-        // 6. Meta Tag Generator
         function generateMetaTags() {
             const title = document.getElementById('metaTitle').value;
             const desc = document.getElementById('metaDesc').value;
