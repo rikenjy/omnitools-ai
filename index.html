@@ -1,341 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniTools AI - All-In-One Utility Suite</title>
-    
-    <!-- Google Analytics Tag -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-3DE7EL7K8D"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-3DE7EL7K8D');
-      gtag('config', 'G-1KYNNV1JFJ');
-    </script>
-
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <!-- Firebase SDKs -->
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-auth-compat.js"></script>
-
-    <style>
-        body {
-            background-color: #0b0f19;
-            color: #ffffff;
-            font-family: system-ui, -apple-system, sans-serif;
-        }
-        .tool-card {
-            background: #111827;
-            border: 1px solid #1f2937;
-            border-radius: 0.75rem;
-            padding: 1.25rem;
-            margin-bottom: 1.5rem;
-        }
-        .input-box {
-            width: 100%;
-            background: #1f2937;
-            border: 1px solid #374151;
-            color: white;
-            padding: 0.6rem 0.75rem;
-            border-radius: 0.5rem;
-            outline: none;
-        }
-        .input-box:focus {
-            border-color: #3b82f6;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OmniTools AI Suite</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; }
+  </style>
 </head>
-<body class="p-4 max-w-xl mx-auto">
+<body class="min-h-screen flex flex-col items-center justify-center p-4">
 
+  <div class="max-w-2xl w-full bg-slate-800 rounded-xl shadow-2xl border border-slate-700 p-6 space-y-6">
     <!-- Header -->
-    <header class="flex justify-between items-center mb-4">
-        <div class="flex items-center gap-2">
-            <i class="fa-solid fa-cube text-blue-500 text-2xl"></i>
-            <div>
-                <h1 class="text-xl font-bold leading-tight">OmniTools AI</h1>
-                <p class="text-xs text-gray-400">All-In-One Utility Suite</p>
-            </div>
-        </div>
-        <button id="login-btn" onclick="loginWithGoogle()" class="bg-blue-600 hover:bg-blue-700 text-white text-sm px-3.5 py-2 rounded-lg font-semibold flex items-center gap-2">
-            Login with Google
-        </button>
-    </header>
-
-    <!-- Google AdSense Banner Slot -->
-    <div class="tool-card text-center py-4 border-dashed border-gray-600">
-        <p class="text-xs text-gray-400 uppercase tracking-widest font-semibold mb-1">Advertisement</p>
-        <p class="text-sm font-medium text-gray-300">Google AdSense Top Banner Slot</p>
+    <div class="text-center">
+      <h1 class="text-3xl font-extrabold text-indigo-400">OmniTools AI</h1>
+      <p class="text-slate-400 text-sm mt-1">Fast & Secure AI Content Generator</p>
     </div>
 
-    <!-- 1. Live Real AI Content Generator -->
-    <div class="tool-card">
-        <div class="flex items-center gap-2 text-blue-400 font-bold mb-3 text-lg">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <h2>AI Content Generator</h2>
-        </div>
-        <div class="space-y-3">
-            <div>
-                <label class="text-xs text-gray-400 block mb-1">Topic / Keywords</label>
-                <input type="text" id="aiTopic" placeholder="e.g., Best smartphones under 20000" class="input-box">
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="text-xs text-gray-400 block mb-1">Type</label>
-                    <select id="aiType" class="input-box">
-                        <option>Social Media Post</option>
-                        <option>Blog Post Outline</option>
-                        <option>Email Draft</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-xs text-gray-400 block mb-1">Tone</label>
-                    <select id="aiTone" class="input-box">
-                        <option>Casual & Engaging</option>
-                        <option>Professional</option>
-                        <option>Friendly</option>
-                    </select>
-                </div>
-            </div>
-            <button id="aiBtn" onclick="generateRealAIContent()" class="w-full bg-blue-600 hover:bg-blue-700 py-2.5 rounded-lg font-semibold text-white transition flex justify-center items-center gap-2">
-                <span>Generate Content</span>
-            </button>
-            <div id="aiOutput" class="bg-gray-800 p-3 rounded-lg text-sm text-gray-200 mt-2 hidden whitespace-pre-line border border-gray-700 select-all"></div>
-        </div>
+    <!-- Input Section -->
+    <div class="space-y-4">
+      <div>
+        <label for="userPrompt" class="block text-sm font-medium text-slate-300 mb-2">Apna Prompt Likhein:</label>
+        <textarea id="userPrompt" rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-500" placeholder="E.g., Write a catchy tagline for a tech startup..."></textarea>
+      </div>
+
+      <button id="generateBtn" onclick="handleGenerate()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
+        <span id="btnText">Generate Content</span>
+        <div id="loader" class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+      </button>
     </div>
 
-    <!-- 2. Live Real AI Prompt Generator -->
-    <div class="tool-card">
-        <div class="flex items-center gap-2 text-purple-400 font-bold mb-3 text-lg">
-            <i class="fa-solid fa-lightbulb"></i>
-            <h2>AI Prompt Generator</h2>
-        </div>
-        <div class="space-y-3">
-            <div>
-                <label class="text-xs text-gray-400 block mb-1">Simple Concept / Idea</label>
-                <input type="text" id="promptIdea" placeholder="e.g. Futuristic city with flying cars" class="input-box">
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="text-xs text-gray-400 block mb-1">Style</label>
-                    <select id="promptStyle" class="input-box">
-                        <option>Photorealistic</option>
-                        <option>Cyberpunk</option>
-                        <option>Anime / Art</option>
-                        <option>3D Render</option>
-                    </select>
-                </div>
-                <div>
-                    <label class="text-xs text-gray-400 block mb-1">Target AI</label>
-                    <select id="promptTarget" class="input-box">
-                        <option>Midjourney / DALL-E</option>
-                        <option>ChatGPT / Gemini</option>
-                    </select>
-                </div>
-            </div>
-            <button onclick="generatePrompt()" class="w-full bg-purple-600 hover:bg-purple-700 py-2.5 rounded-lg font-semibold text-white transition">Generate Enhanced Prompt</button>
-            <div id="promptOutput" class="bg-gray-800 p-3 rounded-lg text-sm text-purple-200 mt-2 hidden border border-gray-700 break-words select-all"></div>
-        </div>
+    <!-- Result Output -->
+    <div id="outputContainer" class="hidden space-y-2">
+      <label class="block text-sm font-medium text-slate-300">Generated Result:</label>
+      <div id="aiOutput" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-4 text-slate-200 whitespace-pre-wrap text-sm leading-relaxed max-h-96 overflow-y-auto"></div>
     </div>
+  </div>
 
-    <!-- 3. EMI & Loan Calculator -->
-    <div class="tool-card">
-        <div class="flex items-center gap-2 text-green-400 font-bold mb-3 text-lg">
-            <i class="fa-solid fa-calculator"></i>
-            <h2>EMI & Loan Calculator</h2>
-        </div>
-        <div class="space-y-3">
-            <div>
-                <label class="text-xs text-gray-400 block mb-1">Loan Amount (₹)</label>
-                <input type="number" id="loanAmount" value="500000" class="input-box">
-            </div>
-            <div class="grid grid-cols-2 gap-3">
-                <div>
-                    <label class="text-xs text-gray-400 block mb-1">Interest Rate (% p.a.)</label>
-                    <input type="number" id="interestRate" value="10.5" class="input-box">
-                </div>
-                <div>
-                    <label class="text-xs text-gray-400 block mb-1">Tenure (Years)</label>
-                    <input type="number" id="loanTenure" value="5" class="input-box">
-                </div>
-            </div>
-            <button onclick="calculateEMI()" class="w-full bg-green-600 hover:bg-green-700 py-2.5 rounded-lg font-semibold text-white transition">Calculate EMI</button>
-            <div id="emiResult" class="text-green-400 font-bold text-center mt-2"></div>
-        </div>
-    </div>
+  <script>
+    // Universal function that calls the Vercel Serverless Function
+    async function generateAIContent(promptText) {
+      const response = await fetch('/api/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ prompt: promptText })
+      });
 
-    <!-- 4. Word & Character Counter -->
-    <div class="tool-card">
-        <div class="flex items-center gap-2 text-yellow-400 font-bold mb-3 text-lg">
-            <i class="fa-solid fa-font"></i>
-            <h2>Word & Character Counter</h2>
-        </div>
-        <textarea id="textInput" placeholder="Paste or type text here..." class="input-box h-24 mb-3"></textarea>
-        <div class="grid grid-cols-2 gap-3 text-center">
-            <div class="bg-gray-800 p-2.5 rounded-lg border border-gray-700">
-                <span class="text-xs text-gray-400 block">Words</span>
-                <span id="wordCount" class="text-lg font-bold text-yellow-400">0</span>
-            </div>
-            <div class="bg-gray-800 p-2.5 rounded-lg border border-gray-700">
-                <span class="text-xs text-gray-400 block">Characters</span>
-                <span id="charCount" class="text-lg font-bold text-yellow-400">0</span>
-            </div>
-        </div>
-    </div>
+      const data = await response.json();
 
-    <!-- 5. Strong Password Generator -->
-    <div class="tool-card">
-        <div class="flex items-center gap-2 text-pink-400 font-bold mb-3 text-lg">
-            <i class="fa-solid fa-key"></i>
-            <h2>Strong Password Generator</h2>
-        </div>
-        <button onclick="generatePassword()" class="w-full bg-pink-600 hover:bg-pink-700 py-2.5 rounded-lg font-semibold text-white transition">Generate Random Password</button>
-        <div id="passwordResult" class="bg-gray-800 p-3 rounded-lg text-center font-mono text-green-400 mt-3 border border-gray-700 break-all select-all">Click button to generate</div>
-    </div>
+      if (!response.ok) {
+        throw new Error(data.error || 'Server error occurred while calling AI');
+      }
 
-    <!-- 6. SEO Meta Tag Generator -->
-    <div class="tool-card">
-        <div class="flex items-center gap-2 text-red-400 font-bold mb-3 text-lg">
-            <i class="fa-solid fa-code"></i>
-            <h2>SEO Meta Tag Generator</h2>
-        </div>
-        <div class="space-y-3">
-            <input type="text" id="metaTitle" placeholder="Website Title" class="input-box">
-            <textarea id="metaDesc" placeholder="Website Description" class="input-box h-20"></textarea>
-            <button onclick="generateMetaTags()" class="w-full bg-red-600 hover:bg-red-700 py-2.5 rounded-lg font-semibold text-white transition">Generate Meta Tags</button>
-            <div id="metaOutput" class="bg-gray-800 p-3 rounded-lg text-xs font-mono text-gray-300 mt-2 hidden whitespace-pre-wrap border border-gray-700 select-all"></div>
-        </div>
-    </div>
+      return data.result;
+    }
 
-    <!-- Scripts -->
-    <script>
-        // YAHAN APNI NAYI GROQ KEY DAALEN (e.g. gsk_...)
-        const GROQ_API_KEY = "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";
+    // Handle button click action
+    async function handleGenerate() {
+      const promptInput = document.getElementById('userPrompt');
+      const promptText = promptInput.value.trim();
 
-        // Firebase Configuration
-        const firebaseConfig = {
-            apiKey: "AIzaSyBYLDwekIWXAIzrXu4PRcRwNwIuIzEKAI",
-            authDomain: "omnitools-ai-dec18.firebaseapp.com",
-            projectId: "omnitools-ai-dec18",
-            storageBucket: "omnitools-ai-dec18.firebasestorage.app",
-            messagingSenderId: "735093006560",
-            appId: "1:735093006560:web:c619bbr2e7fa789eb2ed5"
-        };
+      if (!promptText) {
+        alert('Kripya pehle kuch prompt likhein!');
+        return;
+      }
 
-        try {
-            if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
-        } catch(e) { console.error(e); }
+      const generateBtn = document.getElementById('generateBtn');
+      const btnText = document.getElementById('btnText');
+      const loader = document.getElementById('loader');
+      const outputContainer = document.getElementById('outputContainer');
+      const aiOutput = document.getElementById('aiOutput');
 
-        const auth = firebase.auth();
+      // Loading UI State
+      generateBtn.disabled = true;
+      btnText.innerText = 'Generating...';
+      loader.classList.remove('hidden');
+      outputContainer.classList.add('hidden');
 
-        function loginWithGoogle() {
-            const provider = new firebase.auth.GoogleAuthProvider();
-            auth.signInWithPopup(provider)
-                .then(r => alert("Logged in as " + r.user.displayName))
-                .catch(e => alert("Login failed: " + e.message));
-        }
-
-        auth.onAuthStateChanged(user => {
-            const btn = document.getElementById('login-btn');
-            if (user && btn) {
-                btn.innerText = "Logout (" + user.displayName.split(' ')[0] + ")";
-                btn.onclick = () => auth.signOut().then(() => location.reload());
-            }
-        });
-
-        async function generateRealAIContent() {
-            const topic = document.getElementById('aiTopic').value.trim();
-            const type = document.getElementById('aiType').value;
-            const tone = document.getElementById('aiTone').value;
-            const output = document.getElementById('aiOutput');
-            const btn = document.getElementById('aiBtn');
-
-            if (!topic) { alert("Please enter a topic first!"); return; }
-
-            output.classList.remove('hidden');
-            output.innerText = "⚡ Generating content...";
-            btn.disabled = true;
-
-            const systemPrompt = `Write a detailed, engaging, and high-quality ${type} in a ${tone} tone about "${topic}". Include key bullet points, concise explanation, and actionable value.`;
-
-            try {
-                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
-                    method: "POST",
-                    headers: {
-                        "Authorization": `Bearer ${GROQ_API_KEY}`,
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify({
-                        model: "llama-3.3-70b-versatile",
-                        messages: [{ role: "user", content: systemPrompt }]
-                    })
-                });
-
-                const data = await response.json();
-                
-                if (data.choices && data.choices[0] && data.choices[0].message) {
-                    output.innerText = data.choices[0].message.content;
-                } else if (data.error) {
-                    output.innerText = `⚠️ API Error: ${data.error.message || JSON.stringify(data.error)}`;
-                } else {
-                    output.innerText = "⚠️ Could not generate content. Please try again.";
-                }
-            } catch (err) {
-                output.innerText = "⚠️ Network error. Please check your connection.";
-            } finally {
-                btn.disabled = false;
-            }
-        }
-
-        function generatePrompt() {
-            const idea = document.getElementById('promptIdea').value.trim();
-            const style = document.getElementById('promptStyle').value;
-            const target = document.getElementById('promptTarget').value;
-            const output = document.getElementById('promptOutput');
-
-            if (!idea) { alert("Please enter an idea!"); return; }
-
-            output.classList.remove('hidden');
-            output.innerText = `[${target} Prompt]: Detailed ${style} of ${idea}, 8k resolution, highly realistic, cinematic lighting, masterpiece photography, octane render --ar 16:9 --v 5`;
-        }
-
-        function calculateEMI() {
-            const p = parseFloat(document.getElementById('loanAmount').value);
-            const r = parseFloat(document.getElementById('interestRate').value) / 12 / 100;
-            const n = parseFloat(document.getElementById('loanTenure').value) * 12;
-
-            if (p > 0 && r > 0 && n > 0) {
-                const emi = (p * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
-                document.getElementById('emiResult').innerText = "Monthly EMI: ₹" + emi.toFixed(2);
-            }
-        }
-
-        document.getElementById('textInput').addEventListener('input', (e) => {
-            const text = e.target.value;
-            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
-            document.getElementById('wordCount').innerText = words;
-            document.getElementById('charCount').innerText = text.length;
-        });
-
-        function generatePassword() {
-            const chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()";
-            let pwd = "";
-            for (let i = 0; i < 14; i++) pwd += chars.charAt(Math.floor(Math.random() * chars.length));
-            document.getElementById('passwordResult').innerText = pwd;
-        }
-
-        function generateMetaTags() {
-            const title = document.getElementById('metaTitle').value;
-            const desc = document.getElementById('metaDesc').value;
-            const output = document.getElementById('metaOutput');
-
-            output.classList.remove('hidden');
-            output.innerText = `<title>${title}</title>\n<meta name="description" content="${desc}">\n<meta name="robots" content="index, follow">`;
-        }
-    </script>
+      try {
+        const result = await generateAIContent(promptText);
+        aiOutput.innerText = result;
+        outputContainer.classList.remove('hidden');
+      } catch (error) {
+        console.error('Error:', error);
+        alert('Error: ' + error.message);
+      } finally {
+        // Reset UI State
+        generateBtn.disabled = false;
+        btnText.innerText = 'Generate Content';
+        loader.classList.add('hidden');
+      }
+    }
+  </script>
 </body>
 </html>
