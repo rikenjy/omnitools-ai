@@ -2,98 +2,91 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>OmniTools AI Suite</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OmniTools AI - Free All-In-One Web Utility Suite</title>
+  <meta name="description" content="OmniTools AI offers free tools, finance calculators, resume builder, and high-speed client utilities." />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #0f172a; color: #f8fafc; }
+    body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .ad-slot { background: rgba(30, 41, 59, 0.5); border: 1px dashed #334155; }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-center p-4">
+<body class="min-h-screen flex flex-col justify-between">
 
-  <div class="max-w-2xl w-full bg-slate-800 rounded-xl shadow-2xl border border-slate-700 p-6 space-y-6">
-    <!-- Header -->
-    <div class="text-center">
-      <h1 class="text-3xl font-extrabold text-indigo-400">OmniTools AI</h1>
-      <p class="text-slate-400 text-sm mt-1">Fast & Secure AI Content Generator</p>
+  <!-- Navigation Bar -->
+  <header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-2xl font-black text-indigo-500">OmniTools<span class="text-white">AI</span></span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-300">
+        <a href="/" class="text-indigo-400 font-bold">Home</a>
+        <a href="/loan.html" class="hover:text-indigo-400 transition">Loan Calculator</a>
+        <a href="/sip.html" class="hover:text-indigo-400 transition">SIP Calculator</a>
+        <a href="/resume.html" class="hover:text-indigo-400 transition">Resume Builder</a>
+      </nav>
+      <a href="/loan.html" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-semibold text-xs transition">Explore Tools</a>
     </div>
+  </header>
 
-    <!-- Input Section -->
-    <div class="space-y-4">
-      <div>
-        <label for="userPrompt" class="block text-sm font-medium text-slate-300 mb-2">Apna Prompt Likhein:</label>
-        <textarea id="userPrompt" rows="4" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-3 text-white focus:outline-none focus:ring-2 focus:ring-indigo-500 placeholder-slate-500" placeholder="E.g., Write a catchy tagline for a tech startup..."></textarea>
-      </div>
-
-      <button id="generateBtn" onclick="handleGenerate()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-semibold py-3 rounded-lg transition-all flex items-center justify-center gap-2">
-        <span id="btnText">Generate Content</span>
-        <div id="loader" class="hidden w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-      </button>
-    </div>
-
-    <!-- Result Output -->
-    <div id="outputContainer" class="hidden space-y-2">
-      <label class="block text-sm font-medium text-slate-300">Generated Result:</label>
-      <div id="aiOutput" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-4 text-slate-200 whitespace-pre-wrap text-sm leading-relaxed max-h-96 overflow-y-auto"></div>
+  <!-- Top AdSense Banner Placeholder -->
+  <div class="max-w-7xl mx-auto w-full px-4 mt-4">
+    <div class="ad-slot text-slate-500 text-xs text-center py-3 rounded-lg">
+      ADVERTISEMENT - Google AdSense Top Banner Slot
     </div>
   </div>
 
-  <script>
-    // Universal function that calls the Vercel Serverless Function
-    async function generateAIContent(promptText) {
-      const response = await fetch('/api/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ prompt: promptText })
-      });
+  <!-- Hero Section -->
+  <main class="max-w-4xl mx-auto w-full px-4 py-10 flex-grow space-y-8">
+    
+    <div class="text-center space-y-3">
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
+        OmniTools AI <span class="text-indigo-400">Utility Suite</span>
+      </h1>
+      <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto">
+        Fast, instant, and 100% free web calculators and AI prompt tools.
+      </p>
+    </div>
 
-      const data = await response.json();
+    <!-- Quick Navigation Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+      
+      <!-- Loan Card -->
+      <a href="/loan.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block group">
+        <div class="text-3xl">🏦</div>
+        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">Loan EMI Calculator</h3>
+        <p class="text-xs text-slate-400">Calculate personal, car, and home loan monthly EMIs with detailed breakdown.</p>
+      </a>
 
-      if (!response.ok) {
-        throw new Error(data.error || 'Server error occurred while calling AI');
-      }
+      <!-- SIP Card -->
+      <a href="/sip.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block group">
+        <div class="text-3xl">📈</div>
+        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">SIP Wealth Calculator</h3>
+        <p class="text-xs text-slate-400">Calculate mutual fund SIP growth and expected future returns.</p>
+      </a>
 
-      return data.result;
-    }
+      <!-- Resume Card -->
+      <a href="/resume.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block group">
+        <div class="text-3xl">📄</div>
+        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">AI Resume Builder</h3>
+        <p class="text-xs text-slate-400">Create ATS-friendly professional resumes instantly for job applications.</p>
+      </a>
 
-    // Handle button click action
-    async function handleGenerate() {
-      const promptInput = document.getElementById('userPrompt');
-      const promptText = promptInput.value.trim();
+    </div>
 
-      if (!promptText) {
-        alert('Kripya pehle kuch prompt likhein!');
-        return;
-      }
+  </main>
 
-      const generateBtn = document.getElementById('generateBtn');
-      const btnText = document.getElementById('btnText');
-      const loader = document.getElementById('loader');
-      const outputContainer = document.getElementById('outputContainer');
-      const aiOutput = document.getElementById('aiOutput');
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900/50 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p>© 2026 OmniTools AI Suite. All rights reserved.</p>
+      <div class="flex justify-center gap-4 text-slate-400">
+        <a href="/privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="/about.html" class="hover:underline">About Us</a>
+        <a href="/terms.html" class="hover:underline">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
 
-      // Loading UI State
-      generateBtn.disabled = true;
-      btnText.innerText = 'Generating...';
-      loader.classList.remove('hidden');
-      outputContainer.classList.add('hidden');
-
-      try {
-        const result = await generateAIContent(promptText);
-        aiOutput.innerText = result;
-        outputContainer.classList.remove('hidden');
-      } catch (error) {
-        console.error('Error:', error);
-        alert('Error: ' + error.message);
-      } finally {
-        // Reset UI State
-        generateBtn.disabled = false;
-        btnText.innerText = 'Generate Content';
-        loader.classList.add('hidden');
-      }
-    }
-  </script>
 </body>
 </html>
