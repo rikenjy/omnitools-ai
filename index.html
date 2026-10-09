@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>OmniTools AI - Free All-In-One Web Utility Suite</title>
-  <meta name="description" content="OmniTools AI offers free tools, finance calculators, resume builder, and high-speed client utilities." />
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
     body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
@@ -13,70 +12,66 @@
 </head>
 <body class="min-h-screen flex flex-col justify-between">
 
-  <!-- Navigation Bar -->
   <header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50 backdrop-blur">
     <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
       <a href="/" class="flex items-center gap-2">
         <span class="text-2xl font-black text-indigo-500">OmniTools<span class="text-white">AI</span></span>
       </a>
-      <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-300">
-        <a href="/" class="text-indigo-400 font-bold">Home</a>
-        <a href="/loan.html" class="hover:text-indigo-400 transition">Loan Calculator</a>
-        <a href="/sip.html" class="hover:text-indigo-400 transition">SIP Calculator</a>
-        <a href="/resume.html" class="hover:text-indigo-400 transition">Resume Builder</a>
-      </nav>
       <a href="/loan.html" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-semibold text-xs transition">Explore Tools</a>
     </div>
   </header>
 
-  <!-- Top AdSense Banner Placeholder -->
   <div class="max-w-7xl mx-auto w-full px-4 mt-4">
-    <div class="ad-slot text-slate-500 text-xs text-center py-3 rounded-lg">
-      ADVERTISEMENT - Google AdSense Top Banner Slot
-    </div>
+    <div class="ad-slot text-slate-500 text-xs text-center py-3 rounded-lg">ADVERTISEMENT - Google AdSense Top Banner Slot</div>
   </div>
 
-  <!-- Hero Section -->
-  <main class="max-w-4xl mx-auto w-full px-4 py-10 flex-grow space-y-8">
-    
+  <main class="max-w-6xl mx-auto w-full px-4 py-10 flex-grow space-y-8">
     <div class="text-center space-y-3">
-      <h1 class="text-4xl md:text-5xl font-extrabold text-white tracking-tight">
-        OmniTools AI <span class="text-indigo-400">Utility Suite</span>
-      </h1>
-      <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto">
-        Fast, instant, and 100% free web calculators and AI prompt tools.
-      </p>
+      <h1 class="text-4xl md:text-5xl font-extrabold text-white">OmniTools AI <span class="text-indigo-400">Utility Suite</span></h1>
+      <p class="text-slate-400 text-sm md:text-base max-w-xl mx-auto">Fast, instant, and 100% free web calculators and AI tools.</p>
     </div>
 
-    <!-- Quick Navigation Cards -->
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4">
+    <!-- 5 Dedicated Tools Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4">
       
-      <!-- Loan Card -->
-      <a href="/loan.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block group">
+      <!-- Loan EMI Calculator -->
+      <a href="/loan.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block">
         <div class="text-3xl">🏦</div>
-        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">Loan EMI Calculator</h3>
+        <h3 class="text-lg font-bold text-white">Loan EMI Calculator</h3>
         <p class="text-xs text-slate-400">Calculate personal, car, and home loan monthly EMIs with detailed breakdown.</p>
       </a>
 
-      <!-- SIP Card -->
-      <a href="/sip.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block group">
+      <!-- SIP Wealth Calculator -->
+      <a href="/sip.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block">
         <div class="text-3xl">📈</div>
-        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">SIP Wealth Calculator</h3>
+        <h3 class="text-lg font-bold text-white">SIP Wealth Calculator</h3>
         <p class="text-xs text-slate-400">Calculate mutual fund SIP growth and expected future returns.</p>
       </a>
 
-      <!-- Resume Card -->
-      <a href="/resume.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block group">
+      <!-- AI Resume Builder -->
+      <a href="/resume.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block">
         <div class="text-3xl">📄</div>
-        <h3 class="text-lg font-bold text-white group-hover:text-indigo-400 transition">AI Resume Builder</h3>
+        <h3 class="text-lg font-bold text-white">AI Resume Builder</h3>
         <p class="text-xs text-slate-400">Create ATS-friendly professional resumes instantly for job applications.</p>
       </a>
 
-    </div>
+      <!-- AI Blog Generator -->
+      <a href="/ai-blog.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block">
+        <div class="text-3xl">📝</div>
+        <h3 class="text-lg font-bold text-white">AI Blog Generator</h3>
+        <p class="text-xs text-slate-400">Generate SEO-friendly blog post outlines and articles instantly.</p>
+      </a>
 
+      <!-- AI Image Generator -->
+      <a href="/ai-image.html" class="bg-slate-800/80 border border-slate-700 hover:border-indigo-500 p-6 rounded-2xl transition space-y-3 block">
+        <div class="text-3xl">🎨</div>
+        <h3 class="text-lg font-bold text-white">AI Image Generator</h3>
+        <p class="text-xs text-slate-400">Turn text prompts into instant AI images on the client side.</p>
+      </a>
+
+    </div>
   </main>
 
-  <!-- Footer -->
   <footer class="border-t border-slate-800 bg-slate-900/50 py-6 text-center text-xs text-slate-500">
     <div class="max-w-7xl mx-auto px-4 space-y-2">
       <p>© 2026 OmniTools AI Suite. All rights reserved.</p>
