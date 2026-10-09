@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free SEO Long-Tail Keyword Generator - OmniTools AI</title>
+  <meta name="description" content="Generate relevant SEO keywords and long-tail topics for your blog or business instantly." />
+  <meta name="keywords" content="seo keyword generator, long tail keyword finder, free keyword research tool" />
+  <meta name="robots" content="index, follow" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .ad-slot { background: rgba(30, 41, 59, 0.5); border: 1px dashed #334155; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-2xl font-black text-indigo-500">OmniTools<span class="text-white">AI</span></span>
+      </a>
+      <a href="/" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-semibold text-xs transition">All Tools</a>
+    </div>
+  </header>
+
+  <div class="max-w-7xl mx-auto w-full px-4 mt-4">
+    <div class="ad-slot text-slate-500 text-xs text-center py-3 rounded-lg">ADVERTISEMENT - Top Banner Slot</div>
+  </div>
+
+  <main class="max-w-4xl mx-auto w-full px-4 py-8 flex-grow space-y-6">
+    <div class="text-center space-y-2">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white">SEO <span class="text-indigo-400">Keyword Generator</span></h1>
+      <p class="text-slate-400 text-sm max-w-lg mx-auto">Generate high-intent seed keywords and long-tail phrases for better organic ranking.</p>
+    </div>
+
+    <div class="bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-4">
+      <div>
+        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">Seed Keyword / Niche:</label>
+        <input type="text" id="seedWord" placeholder="E.g., digital marketing, loan calculator, python tutorial" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-sm text-slate-100 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+      </div>
+
+      <button onclick="genKeywords()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl transition">🔍 Find Keywords</button>
+
+      <div id="kwOutput" class="hidden space-y-3 pt-2">
+        <div class="flex justify-between items-center">
+          <span class="text-xs text-slate-400 uppercase font-bold">Generated Long-Tail Keywords</span>
+          <button onclick="copyKW()" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-1 rounded">📋 Copy All</button>
+        </div>
+        <div id="kwList" class="bg-slate-900 border border-slate-700 rounded-xl p-4 text-xs text-emerald-400 font-mono whitespace-pre-line leading-relaxed max-h-80 overflow-y-auto"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-slate-800 bg-slate-900/50 py-6 text-center text-xs text-slate-500">
+    <p>© 2026 OmniTools AI Suite. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function genKeywords() {
+      const seed = document.getElementById('seedWord').value.trim();
+      if (!seed) return alert('Kripya seed keyword likhein!');
+
+      const prefixes = ['best', 'how to', 'free', 'top 10', 'cheap', 'guide to', 'online', 'easy'];
+      const suffixes = ['for beginners', 'in 2026', 'tips', 'calculator', 'ideas', 'strategy', 'tools', 'step by step'];
+
+      let list = [];
+      prefixes.forEach(p => list.push(`${p} ${seed}`));
+      suffixes.forEach(s => list.push(`${seed} ${s}`));
+
+      document.getElementById('kwList').innerText = list.join('\n');
+      document.getElementById('kwOutput').classList.remove('hidden');
+    }
+
+    function copyKW() {
+      navigator.clipboard.writeText(document.getElementById('kwList').innerText);
+      alert('Keywords copied to clipboard!');
+    }
+  </script>
+</body>
+</html>
