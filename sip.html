@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>Free SIP Calculator | Mutual Fund Wealth Return - OmniTools AI</title>
+  <meta name="description" content="Calculate your mutual fund SIP returns, total invested amount, and estimated future wealth accumulation with our instant SIP investment calculator." />
+  <meta name="keywords" content="sip calculator, mutual fund calculator, wealth growth calculator, sip return calculator, omnitools sip" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .ad-slot { background: rgba(30, 41, 59, 0.5); border: 1px dashed #334155; }
+    input[type=range] { accent-color: #6366f1; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-2xl font-black text-indigo-500">OmniTools<span class="text-white">AI</span></span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-300">
+        <a href="/" class="hover:text-indigo-400 transition">Home</a>
+        <a href="/loan.html" class="hover:text-indigo-400 transition">Loan Calculator</a>
+        <a href="/sip.html" class="text-indigo-400 font-bold">SIP Calculator</a>
+        <a href="/resume.html" class="hover:text-indigo-400 transition">Resume Builder</a>
+      </nav>
+      <a href="/" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-semibold text-xs transition">All Tools</a>
+    </div>
+  </header>
+
+  <!-- Top Ad Slot -->
+  <div class="max-w-7xl mx-auto w-full px-4 mt-4">
+    <div class="ad-slot text-slate-500 text-xs text-center py-3 rounded-lg">
+      ADVERTISEMENT - High-CTR Top Slot
+    </div>
+  </div>
+
+  <!-- Main Calculator Content -->
+  <main class="max-w-5xl mx-auto w-full px-4 py-8 flex-grow space-y-8">
+    
+    <div class="text-center space-y-2">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white">
+        Smart <span class="text-indigo-400">SIP Investment Calculator</span>
+      </h1>
+      <p class="text-slate-400 text-sm max-w-lg mx-auto">
+        Calculate how your monthly investments grow over time with compound interest.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Calculator Inputs -->
+      <div class="lg:col-span-7 bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-6">
+        
+        <!-- Monthly Investment Slider -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-sm font-semibold">
+            <label class="text-slate-300">Monthly Investment (₹)</label>
+            <span id="monthlyVal" class="text-indigo-400 font-bold text-lg">₹ 5,000</span>
+          </div>
+          <input type="range" id="monthly" min="500" max="100000" step="500" value="5000" class="w-full h-2 bg-slate-700 rounded-lg cursor-pointer" oninput="calculateSIP()">
+          <div class="flex justify-between text-xs text-slate-500">
+            <span>₹500</span>
+            <span>₹1 Lakh</span>
+          </div>
+        </div>
+
+        <!-- Expected Return Rate Slider -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-sm font-semibold">
+            <label class="text-slate-300">Expected Annual Return Rate (% p.a.)</label>
+            <span id="rateVal" class="text-indigo-400 font-bold text-lg">12 %</span>
+          </div>
+          <input type="range" id="rate" min="1" max="30" step="0.5" value="12" class="w-full h-2 bg-slate-700 rounded-lg cursor-pointer" oninput="calculateSIP()">
+          <div class="flex justify-between text-xs text-slate-500">
+            <span>1%</span>
+            <span>30%</span>
+          </div>
+        </div>
+
+        <!-- Investment Period Slider -->
+        <div class="space-y-2">
+          <div class="flex justify-between items-center text-sm font-semibold">
+            <label class="text-slate-300">Investment Period (Years)</label>
+            <span id="yearsVal" class="text-indigo-400 font-bold text-lg">10 Years</span>
+          </div>
+          <input type="range" id="years" min="1" max="40" step="1" value="10" class="w-full h-2 bg-slate-700 rounded-lg cursor-pointer" oninput="calculateSIP()">
+          <div class="flex justify-between text-xs text-slate-500">
+            <span>1 Yr</span>
+            <span>40 Yrs</span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Result Card & Demat Affiliate Banners -->
+      <div class="lg:col-span-5 space-y-6">
+        
+        <!-- Results Card -->
+        <div class="bg-indigo-950/50 border border-indigo-500/30 rounded-2xl p-6 shadow-xl space-y-5">
+          <h3 class="text-xs uppercase font-bold text-indigo-400 tracking-wider">Investment Summary</h3>
+          
+          <div class="space-y-4">
+            <div>
+              <p class="text-xs text-slate-400">Expected Wealth / Future Value</p>
+              <p id="totalWealthResult" class="text-3xl font-black text-emerald-400">₹ 11,61,695</p>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4 pt-3 border-t border-slate-800 text-sm">
+              <div>
+                <p class="text-xs text-slate-400">Total Invested Amount</p>
+                <p id="investedResult" class="font-bold text-slate-200">₹ 6,00,000</p>
+              </div>
+              <div>
+                <p class="text-xs text-slate-400">Est. Estimated Returns</p>
+                <p id="returnsResult" class="font-bold text-slate-200">₹ 5,61,695</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Demat Account Affiliate Offer Card -->
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-emerald-500/30 rounded-2xl p-5 shadow-lg space-y-3">
+          <div class="flex items-center gap-2">
+            <span class="text-xs bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded">FEATURED OFFER</span>
+            <span class="text-xs text-slate-400">₹0 Account Opening</span>
+          </div>
+          <h4 class="font-bold text-slate-100 text-sm">Start SIP in Top Mutual Funds with ₹0 Commission</h4>
+          <p class="text-xs text-slate-400">Open a free Demat account on Groww / Zerodha and start investing in 5 minutes.</p>
+          <a href="#" target="_blank" class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2.5 rounded-xl text-xs transition">
+            Open Free Demat Account →
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900/50 py-6 text-center text-xs text-slate-500">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p>© 2026 OmniTools AI Suite. All rights reserved.</p>
+      <div class="flex justify-center gap-4 text-slate-400">
+        <a href="/privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="/about.html" class="hover:underline">About Us</a>
+        <a href="/terms.html" class="hover:underline">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SIP Calculation Script -->
+  <script>
+    function calculateSIP() {
+      const p = parseFloat(document.getElementById('monthly').value);
+      const i = (parseFloat(document.getElementById('rate').value) / 100) / 12;
+      const n = parseFloat(document.getElementById('years').value) * 12;
+
+      document.getElementById('monthlyVal').innerText = '₹ ' + p.toLocaleString('en-IN');
+      document.getElementById('rateVal').innerText = document.getElementById('rate').value + ' %';
+      document.getElementById('yearsVal').innerText = document.getElementById('years').value + ' Years';
+
+      // SIP Formula: M = P x ({[1 + i]^n - 1} / i) x (1 + i)
+      const totalInvested = p * n;
+      const futureValue = p * ((Math.pow(1 + i, n) - 1) / i) * (1 + i);
+      const estReturns = futureValue - totalInvested;
+
+      document.getElementById('totalWealthResult').innerText = '₹ ' + Math.round(futureValue).toLocaleString('en-IN');
+      document.getElementById('investedResult').innerText = '₹ ' + Math.round(totalInvested).toLocaleString('en-IN');
+      document.getElementById('returnsResult').innerText = '₹ ' + Math.round(estReturns).toLocaleString('en-IN');
+    }
+
+    calculateSIP();
+  </script>
+</body>
+  </html>
