@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <!-- Primary SEO Meta Tags -->
+  <title>Free AI Resume & CV Builder | ATS Friendly - OmniTools AI</title>
+  <meta name="description" content="Build professional ATS-friendly resumes instantly with live preview and PDF download options. 100% free online resume builder." />
+  <meta name="keywords" content="resume builder, cv builder, free resume generator, ats resume maker, omnitools resume builder" />
+  <meta name="robots" content="index, follow" />
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .ad-slot { background: rgba(30, 41, 59, 0.5); border: 1px dashed #334155; }
+    
+    /* Print styles to cleanly export only the resume preview */
+    @media print {
+      body * { visibility: hidden; }
+      #resumePreview, #resumePreview * { visibility: visible; }
+      #resumePreview {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        background: #ffffff !important;
+        color: #000000 !important;
+        box-shadow: none !important;
+        border: none !important;
+        padding: 0 !important;
+      }
+      .no-print { display: none !important; }
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between">
+
+  <!-- Header Navigation -->
+  <header class="border-b border-slate-800 bg-slate-900/80 sticky top-0 z-50 backdrop-blur no-print">
+    <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-2">
+        <span class="text-2xl font-black text-indigo-500">OmniTools<span class="text-white">AI</span></span>
+      </a>
+      <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-300">
+        <a href="/" class="hover:text-indigo-400 transition">Home</a>
+        <a href="/loan.html" class="hover:text-indigo-400 transition">Loan Calculator</a>
+        <a href="/sip.html" class="hover:text-indigo-400 transition">SIP Calculator</a>
+        <a href="/resume.html" class="text-indigo-400 font-bold">Resume Builder</a>
+      </nav>
+      <a href="/" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-semibold text-xs transition">All Tools</a>
+    </div>
+  </header>
+
+  <!-- Top Ad Slot -->
+  <div class="max-w-7xl mx-auto w-full px-4 mt-4 no-print">
+    <div class="ad-slot text-slate-500 text-xs text-center py-3 rounded-lg">
+      ADVERTISEMENT - High-CTR Top Slot
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-7xl mx-auto w-full px-4 py-8 flex-grow space-y-8">
+    
+    <div class="text-center space-y-2 no-print">
+      <h1 class="text-3xl md:text-4xl font-extrabold text-white">
+        ATS-Friendly <span class="text-indigo-400">Resume Builder</span>
+      </h1>
+      <p class="text-slate-400 text-sm max-w-lg mx-auto">
+        Fill out your details on the left and see your professional resume update in real time on the right.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+      
+      <!-- Input Form (Left Side) -->
+      <div class="lg:col-span-6 bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-6 no-print">
+        
+        <h2 class="text-lg font-bold text-indigo-300 border-b border-slate-700 pb-2">Enter Details</h2>
+
+        <!-- Personal Info -->
+        <div class="space-y-4">
+          <h3 class="text-xs uppercase font-bold text-slate-400 tracking-wider">Personal Information</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Full Name</label>
+              <input type="text" id="inName" value="Rahul Sharma" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateResume()">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Job Title</label>
+              <input type="text" id="inTitle" value="Full Stack Web Developer" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateResume()">
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Email Address</label>
+              <input type="email" id="inEmail" value="rahul.sharma@email.com" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateResume()">
+            </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 mb-1">Phone Number</label>
+              <input type="text" id="inPhone" value="+91 98765 43210" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateResume()">
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Location (City, Country)</label>
+            <input type="text" id="inLocation" value="Bengaluru, India" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateResume()">
+          </div>
+        </div>
+
+        <!-- Summary -->
+        <div class="space-y-2">
+          <h3 class="text-xs uppercase font-bold text-slate-400 tracking-wider">Professional Summary</h3>
+          <textarea id="inSummary" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateResume()">Passionate Software Engineer with 3+ years of experience building scalable web applications using JavaScript, Tailwind CSS, and modern web frameworks.</textarea>
+        </div>
+
+        <!-- Experience & Education -->
+        <div class="space-y-4">
+          <h3 class="text-xs uppercase font-bold text-slate-400 tracking-wider">Experience & Education</h3>
+          
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Work Experience Details</label>
+            <textarea id="inExperience" rows="3" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateResume()">Software Developer | Tech Solutions Inc. (2023 - Present)
+• Developed scalable client web interfaces and integrated RESTful backend components.
+• Optimized web core vitals to improve loading speeds by 40%.</textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Education Details</label>
+            <textarea id="inEducation" rows="2" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateResume()">B.Tech in Computer Science | Delhi Technological University (2019 - 2023)</textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Skills (Comma Separated)</label>
+            <input type="text" id="inSkills" value="JavaScript, HTML5/CSS3, Tailwind CSS, Git, Web Performance Optimization" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updateResume()">
+          </div>
+        </div>
+
+        <button onclick="window.print()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 text-sm">
+          <span>🖨️ Download / Print Resume PDF</span>
+        </button>
+
+      </div>
+
+      <!-- Live Resume Preview (Right Side) -->
+      <div class="lg:col-span-6 space-y-6">
+        
+        <div class="flex items-center justify-between no-print">
+          <h2 class="text-xs uppercase font-bold text-slate-400 tracking-wider">Live Preview</h2>
+          <span class="text-xs bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 px-2.5 py-1 rounded-full font-medium">ATS Template 1</span>
+        </div>
+
+        <!-- ATS Resume Paper View -->
+        <div id="resumePreview" class="bg-white text-slate-900 rounded-2xl p-8 shadow-2xl space-y-6 text-sm border border-slate-200">
+          
+          <!-- Header -->
+          <div class="border-b border-slate-300 pb-4 text-center md:text-left space-y-1">
+            <h1 id="outName" class="text-2xl font-bold tracking-tight text-slate-900">Rahul Sharma</h1>
+            <p id="outTitle" class="text-indigo-600 font-semibold text-sm">Full Stack Web Developer</p>
+            
+            <div class="flex flex-wrap gap-x-4 gap-y-1 text-xs text-slate-600 pt-2 justify-center md:justify-start">
+              <span id="outEmail">rahul.sharma@email.com</span>
+              <span>•</span>
+              <span id="outPhone">+91 98765 43210</span>
+              <span>•</span>
+              <span id="outLocation">Bengaluru, India</span>
+            </div>
+          </div>
+
+          <!-- Summary Section -->
+          <div class="space-y-1.5">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-800 border-b border-slate-200 pb-1">Professional Summary</h2>
+            <p id="outSummary" class="text-xs text-slate-700 leading-relaxed">Passionate Software Engineer with 3+ years of experience building scalable web applications using JavaScript, Tailwind CSS, and modern web frameworks.</p>
+          </div>
+
+          <!-- Work Experience -->
+          <div class="space-y-1.5">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-800 border-b border-slate-200 pb-1">Work Experience</h2>
+            <div id="outExperience" class="text-xs text-slate-700 whitespace-pre-line leading-relaxed">Software Developer | Tech Solutions Inc. (2023 - Present)
+• Developed scalable client web interfaces and integrated RESTful backend components.
+• Optimized web core vitals to improve loading speeds by 40%.</div>
+          </div>
+
+          <!-- Education -->
+          <div class="space-y-1.5">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-800 border-b border-slate-200 pb-1">Education</h2>
+            <div id="outEducation" class="text-xs text-slate-700 whitespace-pre-line leading-relaxed">B.Tech in Computer Science | Delhi Technological University (2019 - 2023)</div>
+          </div>
+
+          <!-- Skills -->
+          <div class="space-y-1.5">
+            <h2 class="text-xs font-bold uppercase tracking-wider text-slate-800 border-b border-slate-200 pb-1">Technical Skills</h2>
+            <p id="outSkills" class="text-xs text-slate-700 leading-relaxed">JavaScript, HTML5/CSS3, Tailwind CSS, Git, Web Performance Optimization</p>
+          </div>
+
+        </div>
+
+        <!-- Career Affiliate Banner -->
+        <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-indigo-500/30 rounded-2xl p-5 shadow-lg space-y-3 no-print">
+          <div class="flex items-center gap-2">
+            <span class="text-xs bg-indigo-500/20 text-indigo-400 font-bold px-2 py-0.5 rounded">RECOMMENDED</span>
+            <span class="text-xs text-slate-400">Career Growth</span>
+          </div>
+          <h4 class="font-bold text-slate-100 text-sm">Get Referred to Top Tech Companies</h4>
+          <p class="text-xs text-slate-400">Prepare for interviews with high-paying remote job prep platforms.</p>
+          <a href="#" target="_blank" class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs transition">
+            Explore Career Courses & Jobs →
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="border-t border-slate-800 bg-slate-900/50 py-6 text-center text-xs text-slate-500 no-print">
+    <div class="max-w-7xl mx-auto px-4 space-y-2">
+      <p>© 2026 OmniTools AI Suite. All rights reserved.</p>
+      <div class="flex justify-center gap-4 text-slate-400">
+        <a href="/privacy-policy.html" class="hover:underline">Privacy Policy</a>
+        <a href="/about.html" class="hover:underline">About Us</a>
+        <a href="/terms.html" class="hover:underline">Terms & Conditions</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Real-Time Update Logic -->
+  <script>
+    function updateResume() {
+      document.getElementById('outName').innerText = document.getElementById('inName').value || 'Your Name';
+      document.getElementById('outTitle').innerText = document.getElementById('inTitle').value || 'Job Title';
+      document.getElementById('outEmail').innerText = document.getElementById('inEmail').value || 'Email';
+      document.getElementById('outPhone').innerText = document.getElementById('inPhone').value || 'Phone';
+      document.getElementById('outLocation').innerText = document.getElementById('inLocation').value || 'Location';
+      document.getElementById('outSummary').innerText = document.getElementById('inSummary').value || '';
+      document.getElementById('outExperience').innerText = document.getElementById('inExperience').value || '';
+      document.getElementById('outEducation').innerText = document.getElementById('inEducation').value || '';
+      document.getElementById('outSkills').innerText = document.getElementById('inSkills').value || '';
+    }
+
+    updateResume();
+  </script>
+</body>
+  </html>
