@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Loan EMI Calculator -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/loan.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- SIP Wealth Calculator -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/sip.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- AI Resume Builder -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/resume.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- AI Blog Generator -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/ai-blog.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- AI Image Generator -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/ai-image.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- AI Prompt Generator -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/prompt-generator.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Password Generator -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/password-generator.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- SEO Keyword Finder -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/keyword-generator.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/privacy-policy.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/about.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+  <!-- Terms & Conditions -->
+  <url>
+    <loc>https://omnitools-ai-chi.vercel.app/terms.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
+</urlset>
