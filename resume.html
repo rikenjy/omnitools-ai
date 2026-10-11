@@ -148,7 +148,7 @@
           </div>
         </div>
 
-        <button onclick="window.print()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 text-sm">
+        <button onclick="triggerResumePaywall(event)" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 text-sm">
           <span>🖨️ Download / Print Resume PDF</span>
         </button>
 
@@ -254,5 +254,28 @@
 
     updateResume();
   </script>
+  <!-- Razorpay Paywall Script -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+function triggerResumePaywall(event) {
+  if (event) event.preventDefault();
+  
+  var options = {
+    "key": "YOUR_RAZORPAY_KEY_ID", // Apna Razorpay Key ID yahan daalein
+    "amount": "2900", // ₹29
+    "currency": "INR",
+    "name": "OmniTools AI",
+    "description": "Unlock ATS Resume PDF Download",
+    "handler": function (response) {
+      alert("Payment Successful! Downloading PDF...");
+      window.print();
+    },
+    "theme": { "color": "#4f46e5" }
+  };
+  
+  var rzp = new Razorpay(options);
+  rzp.open();
+}
+</script>
 </body>
   </html>
