@@ -149,7 +149,7 @@
         </div>
 
         <button onclick="triggerResumePaywall(event)" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 rounded-xl transition shadow-lg shadow-emerald-600/30 flex items-center justify-center gap-2 text-sm">
-          <span>🖨️ Download / Print Resume PDF</span>
+          <span>🖨️ Download / Print Resume PDF (₹29)</span>
         </button>
 
       </div>
@@ -207,17 +207,48 @@
 
         </div>
 
-        <!-- Career Affiliate Banner -->
-        <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-indigo-500/30 rounded-2xl p-5 shadow-lg space-y-3 no-print">
-          <div class="flex items-center gap-2">
-            <span class="text-xs bg-indigo-500/20 text-indigo-400 font-bold px-2 py-0.5 rounded">RECOMMENDED</span>
-            <span class="text-xs text-slate-400">Career Growth</span>
+        <!-- Multi-Affiliate Recommendations Section -->
+        <div class="space-y-4 no-print">
+          
+          <!-- Card 1: Career Growth & Job Referrals (Yahan apna Career/Job Affiliate link daalein) -->
+          <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-indigo-500/30 rounded-2xl p-4 shadow-lg space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xs bg-indigo-500/20 text-indigo-400 font-bold px-2 py-0.5 rounded">RECOMMENDED</span>
+              <span class="text-xs text-slate-400">Career Growth</span>
+            </div>
+            <h4 class="font-bold text-slate-100 text-sm">Get Referred to Top Tech Companies</h4>
+            <p class="text-xs text-slate-400">Find remote jobs and career placement portals.</p>
+            <a href="YOUR_CAREER_AFFILIATE_LINK_HERE" target="_blank" rel="noopener noreferrer" class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2 rounded-xl text-xs transition">
+              Explore Jobs & Referrals →
+            </a>
           </div>
-          <h4 class="font-bold text-slate-100 text-sm">Get Referred to Top Tech Companies</h4>
-          <p class="text-xs text-slate-400">Prepare for interviews with high-paying remote job prep platforms.</p>
-          <a href="#" target="_blank" class="block text-center bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-2.5 rounded-xl text-xs transition">
-            Explore Career Courses & Jobs →
-          </a>
+
+          <!-- Card 2: Tech Courses & Coding Skills (Yahan apna Tech/Coding Affiliate link daalein) -->
+          <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-emerald-500/30 rounded-2xl p-4 shadow-lg space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xs bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded">TOP RATED</span>
+              <span class="text-xs text-slate-400">Tech & Coding</span>
+            </div>
+            <h4 class="font-bold text-slate-100 text-sm">Master Full Stack Development & AI</h4>
+            <p class="text-xs text-slate-400">Upgrade your coding skills with industry-leading developer courses.</p>
+            <a href="YOUR_TECH_COURSES_AFFILIATE_LINK_HERE" target="_blank" rel="noopener noreferrer" class="block text-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-2 rounded-xl text-xs transition">
+              Browse Tech Courses →
+            </a>
+          </div>
+
+          <!-- Card 3: Interview Prep & Mock Tests (Yahan apna Interview Prep Affiliate link daalein) -->
+          <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-amber-500/30 rounded-2xl p-4 shadow-lg space-y-2">
+            <div class="flex items-center gap-2">
+              <span class="text-xs bg-amber-500/20 text-amber-400 font-bold px-2 py-0.5 rounded">MUST HAVE</span>
+              <span class="text-xs text-slate-400">Interview Prep</span>
+            </div>
+            <h4 class="font-bold text-slate-100 text-sm">Crack Coding & HR Interviews</h4>
+            <p class="text-xs text-slate-400">Practice mock interviews and data structures with top platform guides.</p>
+            <a href="YOUR_INTERVIEW_PREP_AFFILIATE_LINK_HERE" target="_blank" rel="noopener noreferrer" class="block text-center bg-amber-600 hover:bg-amber-500 text-white font-bold py-2 rounded-xl text-xs transition">
+              Start Interview Prep →
+            </a>
+          </div>
+
         </div>
 
       </div>
@@ -254,28 +285,29 @@
 
     updateResume();
   </script>
-  <!-- Razorpay Paywall Script -->
-<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
-<script>
-function triggerResumePaywall(event) {
-  if (event) event.preventDefault();
-  
-  var options = {
-    "key": "rzp_test_TmZBq7cQx9GbN9", // Apna Razorpay Key ID yahan daalein
-    "amount": "2900", // ₹29
-    "currency": "INR",
-    "name": "OmniTools AI",
-    "description": "Unlock ATS Resume PDF Download",
-    "handler": function (response) {
-      alert("Payment Successful! Downloading PDF...");
-      window.print();
-    },
-    "theme": { "color": "#4f46e5" }
-  };
-  
-  var rzp = new Razorpay(options);
-  rzp.open();
-}
-</script>
+
+  <!-- Razorpay Paywall Integration (₹29) -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script>
+  function triggerResumePaywall(event) {
+    if (event) event.preventDefault();
+    
+    var options = {
+      "key": "rzp_test_TmZBq7cQx9GbN9", // Aapki original Razorpay Key ID
+      "amount": "2900", // ₹29 (in paisa)
+      "currency": "INR",
+      "name": "OmniTools AI",
+      "description": "Unlock ATS Resume PDF Download",
+      "handler": function (response) {
+        alert("Payment Successful! Downloading PDF...");
+        window.print();
+      },
+      "theme": { "color": "#4f46e5" }
+    };
+    
+    var rzp = new Razorpay(options);
+    rzp.open();
+  }
+  </script>
 </body>
-  </html>
+</html>
