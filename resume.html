@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
   <!-- Primary SEO Meta Tags -->
-  <title>Free AI Resume Builder | ATS-Friendly Resume Generator - OmniTools AI</title>
-  <meta name="description" content="Create professional, ATS-friendly resumes instantly with our free AI Resume Builder. Download free PDF resumes for your job applications." />
-  <meta name="keywords" content="ai resume builder, free resume generator, ats resume maker, omnitools resume" />
+  <title>ATS-Friendly Resume Builder | OmniTools AI</title>
+  <meta name="description" content="Create ATS-friendly professional resumes instantly for job applications." />
+  <meta name="keywords" content="ai resume builder, ats resume maker, free resume generator" />
   <meta name="robots" content="index, follow" />
   
   <!-- Cuelinks Meta Verification -->
@@ -22,11 +22,14 @@
     gtag('config', 'G-8SL0D761FY');
   </script>
   
+  <!-- Razorpay Checkout SDK -->
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    body { background-color: #0f172a; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
-    .ad-slot { background: rgba(30, 41, 59, 0.5); border: 1px dashed #334155; }
+    body { background-color: #0b1120; color: #f8fafc; font-family: system-ui, -apple-system, sans-serif; }
+    .ad-slot { background: rgba(30, 41, 59, 0.4); border: 1px dashed #334155; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col justify-between">
@@ -37,20 +40,14 @@
       <a href="/" class="flex items-center gap-2">
         <span class="text-2xl font-black text-indigo-500">OmniTools<span class="text-white">AI</span></span>
       </a>
-      <nav class="hidden md:flex gap-6 text-sm font-medium text-slate-300">
-        <a href="/" class="hover:text-indigo-400 transition">Home</a>
-        <a href="/loan.html" class="hover:text-indigo-400 transition">Loan Calculator</a>
-        <a href="/sip.html" class="hover:text-indigo-400 transition">SIP Calculator</a>
-        <a href="/resume.html" class="text-indigo-400 font-bold">Resume Builder</a>
-      </nav>
       <a href="/" class="bg-indigo-600 hover:bg-indigo-500 px-4 py-2 rounded-lg font-semibold text-xs transition">All Tools</a>
     </div>
   </header>
 
   <!-- Top Ad Banner Slot -->
   <div class="max-w-7xl mx-auto w-full px-4 mt-4">
-    <div class="ad-slot text-slate-500 text-xs text-center py-3 rounded-lg">
-      ADVERTISEMENT - High-CTR Top Banner Slot
+    <div class="ad-slot text-slate-500 text-xs text-center py-2.5 rounded-lg">
+      ADVERTISEMENT - High-CTR Top Slot
     </div>
   </div>
 
@@ -59,59 +56,78 @@
     
     <div class="text-center space-y-2">
       <h1 class="text-3xl md:text-4xl font-extrabold text-white">
-        AI-Powered <span class="text-indigo-400">Resume Builder</span>
+        ATS-Friendly <span class="text-indigo-400">Resume Builder</span>
       </h1>
-      <p class="text-slate-400 text-sm max-w-lg mx-auto">
-        Create clean, ATS-optimized professional resumes instantly for top tech and corporate job roles.
+      <p class="text-slate-400 text-xs md:text-sm max-w-lg mx-auto">
+        Fill out your details on the left and see your professional resume update in real-time on the right.
       </p>
     </div>
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
       
       <!-- Resume Input Form (Left Side) -->
-      <div class="lg:col-span-7 bg-slate-800/80 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-6">
+      <div class="lg:col-span-7 bg-slate-900/90 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-5">
         
-        <h2 class="text-lg font-bold text-indigo-300 border-b border-slate-700 pb-2">Personal Details</h2>
+        <h2 class="text-base font-bold text-slate-200 uppercase tracking-wider">Enter Details</h2>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div class="space-y-4">
+          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">PERSONAL INFORMATION</p>
+          
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1">Full Name</label>
-            <input type="text" id="fullName" placeholder="Rahul Sharma" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
+            <input type="text" id="fullName" value="Rahul Sharma" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
           </div>
 
           <div>
-            <label class="block text-xs font-semibold text-slate-300 mb-1">Target Job Title</label>
-            <input type="text" id="jobTitle" placeholder="Full Stack Developer" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Job Title</label>
+            <input type="text" id="jobTitle" value="Full Stack Web Developer" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
           </div>
 
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1">Email Address</label>
-            <input type="email" id="email" placeholder="rahul@example.com" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
+            <input type="email" id="email" value="rahul.sharma@gmail.com" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
           </div>
 
           <div>
             <label class="block text-xs font-semibold text-slate-300 mb-1">Phone Number</label>
-            <input type="text" id="phone" placeholder="+91 98765 43210" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
+            <input type="text" id="phone" value="+91 98765 43210" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Location (City, Country)</label>
+            <input type="text" id="location" value="Bengaluru, India" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
           </div>
         </div>
 
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Professional Summary</label>
-          <textarea id="summary" rows="3" placeholder="Passionate developer with 2+ years of experience building scalable web apps..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()"></textarea>
+        <div class="space-y-4 pt-2">
+          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">PROFESSIONAL SUMMARY</p>
+          <textarea id="summary" rows="3" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">Passionate Software Engineer with 3+ years of experience building scalable web applications using JavaScript, Tailwind CSS, and modern web frameworks.</textarea>
         </div>
 
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Key Skills (Comma Separated)</label>
-          <input type="text" id="skills" placeholder="JavaScript, React, Node.js, Python, Tailwind CSS" class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
+        <div class="space-y-4 pt-2">
+          <p class="text-[11px] font-bold text-slate-400 uppercase tracking-wider">EXPERIENCE & EDUCATION</p>
+          
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Work Experience Details</label>
+            <textarea id="experience" rows="3" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">Software Developer | Tech Solutions Inc. (2022 - Present)
+• Developed scalable client web interfaces and integrated RESTful backend components.
+• Optimized web page vitals to improve loading speeds by 40%.</textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Education Details</label>
+            <textarea id="education" rows="2" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">B.Tech in Computer Science - Delhi Technological University (2018 - 2022)</textarea>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 mb-1">Skills (Comma Separated)</label>
+            <input type="text" id="skills" value="JavaScript, HTML5/CSS3, Tailwind CSS, Git, Web Performance Optimization" class="w-full bg-slate-950 border border-slate-800 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()">
+          </div>
         </div>
 
-        <div>
-          <label class="block text-xs font-semibold text-slate-300 mb-1">Work Experience / Projects</label>
-          <textarea id="experience" rows="3" placeholder="Developed full-stack web applications using Node.js and React. Optimized performance and improved UI/UX..." class="w-full bg-slate-900 border border-slate-700 rounded-lg p-2.5 text-xs text-slate-100 focus:outline-none focus:ring-1 focus:ring-indigo-500" oninput="updatePreview()"></textarea>
-        </div>
-
-        <button onclick="window.print()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold py-3 rounded-xl text-xs transition shadow-lg">
-          Download / Print Resume (PDF)
+        <!-- Razorpay Paid Download Button (₹49) -->
+        <button onclick="payAndDownload()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3.5 rounded-xl text-xs transition shadow-lg flex items-center justify-center gap-2">
+          📄 Download / Print Resume PDF (₹49)
         </button>
 
       </div>
@@ -119,39 +135,53 @@
       <!-- Preview & Affiliate Cards (Right Side) -->
       <div class="lg:col-span-5 space-y-6">
         
-        <!-- Live Resume Preview -->
-        <div class="bg-slate-800/90 border border-slate-700 rounded-2xl p-6 shadow-xl space-y-3">
-          <h2 class="text-xs uppercase font-bold text-slate-400 tracking-wider">Live ATS Preview</h2>
+        <!-- Live Preview Header -->
+        <div class="flex items-center justify-between">
+          <span class="text-xs uppercase font-bold text-slate-400 tracking-wider">LIVE PREVIEW</span>
+          <span class="text-[11px] bg-slate-800 text-indigo-400 font-semibold px-2 py-0.5 rounded border border-slate-700">ATS Template 1</span>
+        </div>
+
+        <!-- Live Resume Card -->
+        <div class="bg-white text-slate-900 p-6 rounded-2xl shadow-2xl space-y-4 border border-slate-200">
+          <div class="text-center border-b border-slate-200 pb-3 space-y-1">
+            <h3 id="prevName" class="text-xl font-black text-slate-900 tracking-wide">Rahul Sharma</h3>
+            <p id="prevTitle" class="text-indigo-600 font-bold text-xs">Full Stack Web Developer</p>
+            <p class="text-[11px] text-slate-500 font-medium">
+              <span id="prevEmail">rahul.sharma@gmail.com</span> • <span id="prevPhone">+91 98765 43210</span><br>
+              • <span id="prevLocation">Bengaluru, India</span>
+            </p>
+          </div>
           
-          <div id="previewCard" class="bg-white text-slate-900 p-4 rounded-xl space-y-2 text-xs font-sans border border-slate-300">
-            <h3 id="prevName" class="text-base font-bold text-slate-900">Rahul Sharma</h3>
-            <p id="prevTitle" class="text-indigo-600 font-semibold text-xs border-b border-slate-200 pb-1">Full Stack Developer</p>
-            <p id="prevContact" class="text-slate-500 text-[11px]">rahul@example.com | +91 98765 43210</p>
-            
-            <div class="pt-1">
-              <span class="font-bold text-slate-800 block text-[11px]">Summary:</span>
-              <p id="prevSummary" class="text-slate-600 text-[11px]">Passionate developer with 2+ years of experience building scalable web apps...</p>
-            </div>
+          <div class="space-y-1">
+            <h4 class="text-[11px] font-bold text-slate-900 uppercase border-b border-slate-200 pb-0.5 tracking-wider">PROFESSIONAL SUMMARY</h4>
+            <p id="prevSummary" class="text-slate-700 text-[11px] leading-relaxed">Passionate Software Engineer with 3+ years of experience building scalable web applications using JavaScript, Tailwind CSS, and modern web frameworks.</p>
+          </div>
 
-            <div class="pt-1">
-              <span class="font-bold text-slate-800 block text-[11px]">Skills:</span>
-              <p id="prevSkills" class="text-slate-600 text-[11px]">JavaScript, React, Node.js, Python, Tailwind CSS</p>
-            </div>
+          <div class="space-y-1">
+            <h4 class="text-[11px] font-bold text-slate-900 uppercase border-b border-slate-200 pb-0.5 tracking-wider">WORK EXPERIENCE</h4>
+            <div id="prevExperience" class="text-slate-700 text-[11px] whitespace-pre-line leading-relaxed">Software Developer | Tech Solutions Inc. (2022 - Present)
+• Developed scalable client web interfaces and integrated RESTful backend components.
+• Optimized web page vitals to improve loading speeds by 40%.</div>
+          </div>
 
-            <div class="pt-1">
-              <span class="font-bold text-slate-800 block text-[11px]">Experience:</span>
-              <p id="prevExperience" class="text-slate-600 text-[11px]">Developed full-stack web applications using Node.js and React. Optimized performance and improved UI/UX...</p>
-            </div>
+          <div class="space-y-1">
+            <h4 class="text-[11px] font-bold text-slate-900 uppercase border-b border-slate-200 pb-0.5 tracking-wider">EDUCATION</h4>
+            <p id="prevEducation" class="text-slate-700 text-[11px]">B.Tech in Computer Science - Delhi Technological University (2018 - 2022)</p>
+          </div>
+
+          <div class="space-y-1">
+            <h4 class="text-[11px] font-bold text-slate-900 uppercase border-b border-slate-200 pb-0.5 tracking-wider">TECHNICAL SKILLS</h4>
+            <p id="prevSkills" class="text-slate-700 text-[11px]">JavaScript, HTML5/CSS3, Tailwind CSS, Git, Web Performance Optimization</p>
           </div>
         </div>
 
-        <!-- Career & Education Multi-Affiliate Section -->
-        <div class="space-y-4">
+        <!-- Career Multi-Affiliate Cards -->
+        <div class="space-y-4 pt-2">
           
-          <!-- Card 1: Job Portals / Career Placement -->
-          <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-indigo-500/30 rounded-2xl p-4 shadow-lg space-y-2">
+          <!-- Card 1: Job Portals -->
+          <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-indigo-500/30 rounded-2xl p-4 shadow-lg space-y-2">
             <div class="flex items-center gap-2">
-              <span class="text-xs bg-indigo-500/20 text-indigo-400 font-bold px-2 py-0.5 rounded">RECOMMENDED</span>
+              <span class="text-[10px] bg-indigo-500/20 text-indigo-400 font-bold px-2 py-0.5 rounded">RECOMMENDED</span>
               <span class="text-xs text-slate-400">Career Growth</span>
             </div>
             <h4 class="font-bold text-slate-100 text-sm">Get Referred to Top Tech Companies</h4>
@@ -161,10 +191,10 @@
             </a>
           </div>
 
-          <!-- Card 2: Tech & Coding Courses (Coursera Affiliate Link Applied) -->
-          <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-emerald-500/30 rounded-2xl p-4 shadow-lg space-y-2">
+          <!-- Card 2: Coursera Affiliate Link -->
+          <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-emerald-500/30 rounded-2xl p-4 shadow-lg space-y-2">
             <div class="flex items-center gap-2">
-              <span class="text-xs bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded">TOP RATED</span>
+              <span class="text-[10px] bg-emerald-500/20 text-emerald-400 font-bold px-2 py-0.5 rounded">TOP RATED</span>
               <span class="text-xs text-slate-400">Tech & Coding</span>
             </div>
             <h4 class="font-bold text-slate-100 text-sm">Master Full Stack Development & AI</h4>
@@ -174,10 +204,10 @@
             </a>
           </div>
 
-          <!-- Card 3: Interview Prep / Coding Practice -->
-          <div class="bg-gradient-to-br from-slate-800 to-slate-900 border border-amber-500/30 rounded-2xl p-4 shadow-lg space-y-2">
+          <!-- Card 3: Interview Prep -->
+          <div class="bg-gradient-to-br from-slate-900 to-slate-950 border border-amber-500/30 rounded-2xl p-4 shadow-lg space-y-2">
             <div class="flex items-center gap-2">
-              <span class="text-xs bg-amber-500/20 text-amber-400 font-bold px-2 py-0.5 rounded">MUST HAVE</span>
+              <span class="text-[10px] bg-amber-500/20 text-amber-400 font-bold px-2 py-0.5 rounded">MUST HAVE</span>
               <span class="text-xs text-slate-400">Interview Prep</span>
             </div>
             <h4 class="font-bold text-slate-100 text-sm">Crack Coding & HR Interviews</h4>
@@ -196,7 +226,7 @@
   </main>
 
   <!-- Footer -->
-  <footer class="border-t border-slate-800 bg-slate-900/50 py-6 text-center text-xs text-slate-500">
+  <footer class="border-t border-slate-800 bg-slate-950 py-6 text-center text-xs text-slate-500">
     <div class="max-w-7xl mx-auto px-4 space-y-2">
       <p>© 2026 OmniTools AI Suite. All rights reserved.</p>
       <div class="flex justify-center gap-4 text-slate-400">
@@ -207,19 +237,43 @@
     </div>
   </footer>
 
-  <!-- Resume Live Preview Logic -->
+  <!-- Live Preview & Razorpay Payment Logic -->
   <script>
     function updatePreview() {
       document.getElementById('prevName').innerText = document.getElementById('fullName').value || 'Rahul Sharma';
-      document.getElementById('prevTitle').innerText = document.getElementById('jobTitle').value || 'Full Stack Developer';
+      document.getElementById('prevTitle').innerText = document.getElementById('jobTitle').value || 'Full Stack Web Developer';
+      document.getElementById('prevEmail').innerText = document.getElementById('email').value || 'rahul.sharma@gmail.com';
+      document.getElementById('prevPhone').innerText = document.getElementById('phone').value || '+91 98765 43210';
+      document.getElementById('prevLocation').innerText = document.getElementById('location').value || 'Bengaluru, India';
       
-      let email = document.getElementById('email').value || 'rahul@example.com';
-      let phone = document.getElementById('phone').value || '+91 98765 43210';
-      document.getElementById('prevContact').innerText = email + ' | ' + phone;
+      document.getElementById('prevSummary').innerText = document.getElementById('summary').value || '';
+      document.getElementById('prevExperience').innerText = document.getElementById('experience').value || '';
+      document.getElementById('prevEducation').innerText = document.getElementById('education').value || '';
+      document.getElementById('prevSkills').innerText = document.getElementById('skills').value || '';
+    }
 
-      document.getElementById('prevSummary').innerText = document.getElementById('summary').value || 'Passionate developer with 2+ years of experience building scalable web apps...';
-      document.getElementById('prevSkills').innerText = document.getElementById('skills').value || 'JavaScript, React, Node.js, Python, Tailwind CSS';
-      document.getElementById('prevExperience').innerText = document.getElementById('experience').value || 'Developed full-stack web applications using Node.js and React. Optimized performance and improved UI/UX...';
+    function payAndDownload() {
+      var options = {
+        "key": "rzp_test_R4588J14LqX8cR", // Your Razorpay Test Key ID
+        "amount": "4900", // ₹49 in Paise
+        "currency": "INR",
+        "name": "OmniTools AI",
+        "description": "Premium Resume Download Fee",
+        "handler": function (response) {
+          alert("Payment Successful! Payment ID: " + response.razorpay_payment_id);
+          window.print();
+        },
+        "prefill": {
+          "name": document.getElementById('fullName').value || "Customer",
+          "email": document.getElementById('email').value || "customer@example.com",
+          "contact": document.getElementById('phone').value || "9876543210"
+        },
+        "theme": {
+          "color": "#059669"
+        }
+      };
+      var rzp1 = new Razorpay(options);
+      rzp1.open();
     }
   </script>
 
@@ -236,4 +290,4 @@
   </script>
 
 </body>
-</html>
+  </html>
